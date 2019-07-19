@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="80dp"
+        android:id="@+id/rv_goods_type"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+    <se.emilsjolander.stickylistheaders.StickyListHeadersListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/slhlv"></se.emilsjolander.stickylistheaders.StickyListHeadersListView>
+</LinearLayout>

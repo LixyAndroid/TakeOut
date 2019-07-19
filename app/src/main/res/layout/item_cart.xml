@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="60dp"
+    android:background="#fff"
+    android:gravity="center_vertical"
+    >
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:singleLine="true"
+        android:layout_height="wrap_content"
+        android:text="外带全家桶"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:layout_marginLeft="20dp"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:id="@+id/tv_type_all_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="￥60"
+        android:textSize="20sp"
+        android:textColor="#cd5656"
+        android:layout_marginLeft="20dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"/>
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/ib_minus"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:visibility="visible"
+            android:background="@drawable/button_minus"/>
+        <TextView
+            android:id="@+id/tv_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="0"
+            android:textColor="#000"
+            android:layout_marginLeft="5dp"
+            android:visibility="visible"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5dp"/>
+        <ImageButton
+            android:id="@+id/ib_add"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/button_add"/>
+    </LinearLayout>
+
+</LinearLayout>
