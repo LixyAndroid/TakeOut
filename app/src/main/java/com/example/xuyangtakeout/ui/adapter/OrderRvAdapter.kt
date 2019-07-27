@@ -105,8 +105,8 @@ class OrderRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.V
     inner class OrderItemHolder(item: View) : RecyclerView.ViewHolder(item) {
         fun binData(order: Order) {
             this.order = order
-            tvSellerName.text = order.seller.name
-            tvOrderType.text = getOrderTypeInfo(order.type)
+            tvSellerName.text = order.seller!!.name
+            tvOrderType.text = order.type?.let { getOrderTypeInfo(it) }
 
         }
 

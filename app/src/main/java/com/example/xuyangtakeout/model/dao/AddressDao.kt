@@ -11,7 +11,7 @@ import java.lang.Exception
  * on 2019/5/22 23:00
  */
 class AddressDao(context: Context) {
-    lateinit var addressDao: Dao<RecepitAddressBean, Int>
+     var addressDao: Dao<RecepitAddressBean, Int>
 
     init {
         val openHelper = TakeOutOpenHelper(context)

@@ -53,7 +53,6 @@ class BusinessActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
 
-
         when (v?.id) {
             R.id.bottom -> showOrHideCart()
             R.id.tvSubmit -> {
