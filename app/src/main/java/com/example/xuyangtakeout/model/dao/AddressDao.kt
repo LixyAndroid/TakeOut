@@ -11,49 +11,52 @@ import java.lang.Exception
  * on 2019/5/22 23:00
  */
 class AddressDao(context: Context) {
-    lateinit var addressDao:Dao<RecepitAddressBean,Int>
+    lateinit var addressDao: Dao<RecepitAddressBean, Int>
+
     init {
-        val  openHelper = TakeOutOpenHelper(context)
-        addressDao  = openHelper.getDao(RecepitAddressBean::class.java)
+        val openHelper = TakeOutOpenHelper(context)
+        addressDao = openHelper.getDao(RecepitAddressBean::class.java)
     }
 
-    fun addRecepitAddressBean(bean: RecepitAddressBean){
+    fun addRecepitAddressBean(bean: RecepitAddressBean) {
 
         try {
             addressDao.create(bean)
-        }catch (e:Exception){
-            Log.e("address",e.localizedMessage)
+        } catch (e: Exception) {
+            Log.e("address", e.localizedMessage)
         }
 
 
     }
-    fun deleteRecepitAddressBean(bean: RecepitAddressBean){
+
+    fun deleteRecepitAddressBean(bean: RecepitAddressBean) {
 
         try {
             addressDao.delete(bean)
-        }catch (e:Exception){
-            Log.e("address",e.localizedMessage)
+        } catch (e: Exception) {
+            Log.e("address", e.localizedMessage)
         }
 
 
     }
-    fun updateRecepitAddressBean(bean: RecepitAddressBean){
+
+    fun updateRecepitAddressBean(bean: RecepitAddressBean) {
 
         try {
             addressDao.update(bean)
-        }catch (e:Exception){
-            Log.e("address",e.localizedMessage)
+        } catch (e: Exception) {
+            Log.e("address", e.localizedMessage)
         }
 
 
     }
 
-    fun queryAllAddress():List<RecepitAddressBean>{
+    fun queryAllAddress(): List<RecepitAddressBean> {
 
         try {
-           return addressDao.queryForAll()
-        }catch (e:Exception){
-            Log.e("address",e.localizedMessage)
+            return addressDao.queryForAll()
+        } catch (e: Exception) {
+            Log.e("address", e.localizedMessage)
             return ArrayList<RecepitAddressBean>()
         }
 

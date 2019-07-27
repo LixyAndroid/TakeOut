@@ -8,8 +8,6 @@ import java.util.Observable
 class OrderObservable private constructor() : Observable() {
 
 
-
-
     companion object {
         val instance = OrderObservable()
 

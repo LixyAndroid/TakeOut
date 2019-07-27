@@ -8,7 +8,7 @@ import android.content.Context
  */
 
 class CommonUtil {
-    companion object{
+    companion object {
         //获取是否存在NavigationBar
         fun checkDeviceHasNavigationBar(context: Context): Boolean {
             var hasNavigationBar = false

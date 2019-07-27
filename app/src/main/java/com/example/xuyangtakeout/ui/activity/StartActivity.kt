@@ -15,7 +15,7 @@ import com.example.xuyangtakeout.utils.ConstantTool
  * Created by Mloong
  * on 2019/5/28 12:58
  */
-class StartActivity :AppCompatActivity(){
+class StartActivity : AppCompatActivity() {
     internal var llStart: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

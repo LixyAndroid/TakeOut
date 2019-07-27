@@ -17,10 +17,10 @@ import kotlinx.android.synthetic.main.activity_address_list.*
  * Created by Mloong
  * on 2019/5/22 21:20
  */
-class RecepitAddressActivity() : AppCompatActivity(){
+class RecepitAddressActivity() : AppCompatActivity() {
 
-    lateinit var  addressDao: AddressDao
-    lateinit var  adapter: AddressRvAdapter
+    lateinit var addressDao: AddressDao
+    lateinit var adapter: AddressRvAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_address_list)
@@ -28,10 +28,10 @@ class RecepitAddressActivity() : AppCompatActivity(){
         ib_back.setOnClickListener { finish() }
         addressDao = AddressDao(this)
         rv_receipt_address.layoutManager = LinearLayoutManager(this)
-        rv_receipt_address.addItemDecoration(RecycleViewDivider(this,LinearLayoutManager.HORIZONTAL))
+        rv_receipt_address.addItemDecoration(RecycleViewDivider(this, LinearLayoutManager.HORIZONTAL))
         adapter = AddressRvAdapter(this)
         rv_receipt_address.adapter = adapter
-       // rv_receipt_address.adapter = AddressRvAdapter(this)
+        // rv_receipt_address.adapter = AddressRvAdapter(this)
 
         //判断设备是否有虚拟按键，如果有增加paddingBottom = 50dp
         if (CommonUtil.checkDeviceHasNavigationBar(this)) {
@@ -51,10 +51,10 @@ class RecepitAddressActivity() : AppCompatActivity(){
         super.onStart()
 
         val addressList = addressDao.queryAllAddress()
-        if (addressList.isNotEmpty()){
-  //          toast("一共有${addressList.size} 个地址")
+        if (addressList.isNotEmpty()) {
+            //          toast("一共有${addressList.size} 个地址")
 
-      //      (rv_receipt_address.adapter as AddressRvAdapter).addressList = addressList as ArrayList<RecepitAddressBean>
+            //      (rv_receipt_address.adapter as AddressRvAdapter).addressList = addressList as ArrayList<RecepitAddressBean>
             adapter.setAddList(addressList as ArrayList<RecepitAddressBean>)
         }
 
@@ -65,8 +65,6 @@ class RecepitAddressActivity() : AppCompatActivity(){
         val scale = resources.displayMetrics.density
         return (toFloat() * scale + 0.5f).toInt()
     }
-
-
 
 
 }

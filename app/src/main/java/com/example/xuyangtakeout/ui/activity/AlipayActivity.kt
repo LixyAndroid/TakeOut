@@ -11,9 +11,9 @@ import org.jetbrains.anko.find
  * Created by Mloong
  * on 2019/5/28 20:54
  */
-class AlipayActivity :AppCompatActivity(){
+class AlipayActivity : AppCompatActivity() {
 
-    lateinit var ibBack:ImageButton
+    lateinit var ibBack: ImageButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alipay)

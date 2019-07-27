@@ -6,10 +6,8 @@ package com.example.xuyangtakeout.utils
  */
 class Constants {
     companion object {
-        val ADD  = 1
-        val MINUS  = -1
-
-
+        val ADD = 1
+        val MINUS = -1
     }
 
 }

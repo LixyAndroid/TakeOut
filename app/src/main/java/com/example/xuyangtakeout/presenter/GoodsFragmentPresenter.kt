@@ -16,11 +16,11 @@ import java.lang.reflect.Type
  * Created by Mloong
  * on 2019/5/20 21:32.
  */
-class GoodsFragmentPresenter(val goodsFragment: GoodsFragment) :NetPresenter(){
-    val allTypeGoodsList :ArrayList<GoodsInfo> = arrayListOf()
-    var goodsTypeList:List<GoodsTypeInfo> = arrayListOf()
+class GoodsFragmentPresenter(val goodsFragment: GoodsFragment) : NetPresenter() {
+    val allTypeGoodsList: ArrayList<GoodsInfo> = arrayListOf()
+    var goodsTypeList: List<GoodsTypeInfo> = arrayListOf()
     //拿到此商家所有的商品
-    fun getBusinessInfo(sellerId: String){
+    fun getBusinessInfo(sellerId: String) {
         val buinessCall = takeoutService.getBuinessInfo(sellerId)
         buinessCall.enqueue(callback)
 
@@ -36,15 +36,15 @@ class GoodsFragmentPresenter(val goodsFragment: GoodsFragment) :NetPresenter(){
         val hasSelectInfo = (goodsFragment.activity as BusinessActivity).hasSelectInfo
 
         //list<GoodsTypeInfo>
-        goodsTypeList= gson.fromJson(allStr,object :TypeToken<List<GoodsTypeInfo>>(){
+        goodsTypeList = gson.fromJson(allStr, object : TypeToken<List<GoodsTypeInfo>>() {
         }.type)
 
-        Log.e("business","一共有${goodsTypeList.size}个类别商品")
+        Log.e("business", "一共有${goodsTypeList.size}个类别商品")
 
-        for (i in 0 until goodsTypeList.size){
+        for (i in 0 until goodsTypeList.size) {
             val goodsTypeInfo = goodsTypeList.get(i)
-             var  aTypeCount =0
-            if (hasSelectInfo){
+            var aTypeCount = 0
+            if (hasSelectInfo) {
 
                 aTypeCount = TakeoutApp.sInstance.queryCacheSelectedInfoByTypeId(goodsTypeInfo.id)
 
@@ -52,10 +52,10 @@ class GoodsFragmentPresenter(val goodsFragment: GoodsFragment) :NetPresenter(){
             }
 
 
-            val aTypeList:List<GoodsInfo> = goodsTypeInfo.list
-            for ( j in 0 until  aTypeList.size){
+            val aTypeList: List<GoodsInfo> = goodsTypeInfo.list
+            for (j in 0 until aTypeList.size) {
                 val goodsInfo = aTypeList.get(j)
-                if (aTypeCount >0){
+                if (aTypeCount > 0) {
                     val count = TakeoutApp.sInstance.queryCacheSelectedInfoByGoodsId(goodsInfo.id)
                     goodsInfo.count = count   //具体商品的记录个数
                 }
@@ -73,35 +73,35 @@ class GoodsFragmentPresenter(val goodsFragment: GoodsFragment) :NetPresenter(){
         //更新购物车的UI
         (goodsFragment.activity as BusinessActivity).updateCarUi()
 
-        goodsFragment.onLoadBusinessSucess(goodsTypeList,allTypeGoodsList)
+        goodsFragment.onLoadBusinessSucess(goodsTypeList, allTypeGoodsList)
 
 
     }
 
     //根据商品类别id找到此类别第一个商品的位置
     fun getGoodsPositionByTypeId(typeId: Int): Int {
-       var position = -1  //-1表示为找到
-       for (j in 0 until allTypeGoodsList.size){
+        var position = -1  //-1表示为找到
+        for (j in 0 until allTypeGoodsList.size) {
 
-           val goodsInfo = allTypeGoodsList.get(j)
+            val goodsInfo = allTypeGoodsList.get(j)
 
-           if (goodsInfo.typeId == typeId){
-               position = j
-               break
-           }
-       }
+            if (goodsInfo.typeId == typeId) {
+                position = j
+                break
+            }
+        }
         return position
     }
 
     //根据类别id找到其在左侧的id
-    fun getTypePositionByTypeId(newTypeId:Int) :Int{
+    fun getTypePositionByTypeId(newTypeId: Int): Int {
 
         var position = -1  //-1表示为找到
-        for (i in 0 until goodsTypeList.size){
+        for (i in 0 until goodsTypeList.size) {
 
             val goodsTypeInfo = goodsTypeList.get(i)
 
-            if (goodsTypeInfo.id == newTypeId){
+            if (goodsTypeInfo.id == newTypeId) {
                 position = i
                 break
             }
@@ -110,25 +110,25 @@ class GoodsFragmentPresenter(val goodsFragment: GoodsFragment) :NetPresenter(){
 
     }
 
-    fun getCartList() :ArrayList<GoodsInfo>{
+    fun getCartList(): ArrayList<GoodsInfo> {
 
-        val  cartList = arrayListOf<GoodsInfo>()
+        val cartList = arrayListOf<GoodsInfo>()
         //count >0
-        for (j in 0 until allTypeGoodsList.size){
+        for (j in 0 until allTypeGoodsList.size) {
 
             val goodsInfo = allTypeGoodsList.get(j)
 
-            if (goodsInfo.count > 0){
+            if (goodsInfo.count > 0) {
                 cartList.add(goodsInfo)
             }
         }
 
-        return  cartList
+        return cartList
     }
 
     fun clearCart() {
-        val  cartList = getCartList()
-        for (j in 0 until  cartList.size){
+        val cartList = getCartList()
+        for (j in 0 until cartList.size) {
             val goodsInfo = cartList.get(j)
 
             goodsInfo.count = 0

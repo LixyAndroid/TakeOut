@@ -7,26 +7,29 @@ import java.io.Serializable
 /**
  * Created by Mloong
  * on 2019/5/22 22:47
+ *
+ * 地址表格
  */
-@DatabaseTable(tableName = "t_address")class RecepitAddressBean() :Serializable{
+@DatabaseTable(tableName = "t_address")
+class RecepitAddressBean() : Serializable {
     @DatabaseField(generatedId = true)
-    var id :Int = 0
+    var id: Int = 0
     @DatabaseField(columnName = "username")
-     var username :String =""
+    var username: String = ""
     @DatabaseField(columnName = "sex")
-    var sex:String = "女"
+    var sex: String = "女"
     @DatabaseField(columnName = "phone")
-    var phone :String = ""
+    var phone: String = ""
     @DatabaseField(columnName = "phoneOther")
-    var phoneOther :String = ""
+    var phoneOther: String = ""
     @DatabaseField(columnName = "address")
-    var address:String = ""
+    var address: String = ""
     @DatabaseField(columnName = "detailAddress")
-    var detailAddress:String = ""
+    var detailAddress: String = ""
     @DatabaseField(columnName = "label")
     var label = ""
     @DatabaseField(columnName = "userId")
-    var userId :String = "38"
+    var userId: String = "38"
 
 
     constructor(
@@ -39,7 +42,7 @@ import java.io.Serializable
         detailAddress: String,
         label: String,
         userId: String
-    ):this() {
+    ) : this() {
         this.id = id
         this.username = username
         this.sex = sex

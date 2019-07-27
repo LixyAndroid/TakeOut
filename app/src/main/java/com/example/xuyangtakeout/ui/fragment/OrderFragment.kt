@@ -21,7 +21,7 @@ import org.jetbrains.anko.find
 import org.jetbrains.anko.toast
 
 
-class OrderFragment:Fragment(){
+class OrderFragment : Fragment() {
 
     lateinit var orderPresenter: OrderFragmentPresenter
     lateinit var rvOrder: RecyclerView
@@ -29,25 +29,25 @@ class OrderFragment:Fragment(){
     lateinit var adapter: OrderRvAdapter
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val orderview = View.inflate(activity, R.layout.fragment_order, null)
-       // (view as TextView).setText("订单")
+        // (view as TextView).setText("订单")
 
         orderPresenter = OrderFragmentPresenter(this)
         rvOrder = orderview.find<RecyclerView>(R.id.rv_order_list)
         rvOrder.layoutManager = LinearLayoutManager(activity)
         adapter = OrderRvAdapter(activity)
-        rvOrder.adapter =adapter
+        rvOrder.adapter = adapter
 
         swipeLayout = orderview.find<SwipeRefreshLayout>(R.id.srl_order)
-        swipeLayout.setOnRefreshListener (object :SwipeRefreshLayout.OnRefreshListener{
+        swipeLayout.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
 
             override fun onRefresh() {
                 //下拉后重新请求
                 val userId = TakeoutApp.sUser.id
-                if ( -1 == userId){
+                if (-1 == userId) {
                     toast("必须先登录才能查看订单，请先登录")
 
 
-                }else {
+                } else {
                     orderPresenter.getOrderList(userId.toString())
                 }
 
@@ -55,7 +55,7 @@ class OrderFragment:Fragment(){
 
         })
 
-        return  orderview
+        return orderview
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -65,11 +65,11 @@ class OrderFragment:Fragment(){
 
 
         val userId = TakeoutApp.sUser.id
-        if ( -1 == userId){
+        if (-1 == userId) {
             toast("必须先登录才能查看订单，请先登录")
 
 
-        }else {
+        } else {
             orderPresenter.getOrderList(userId.toString())
         }
     }

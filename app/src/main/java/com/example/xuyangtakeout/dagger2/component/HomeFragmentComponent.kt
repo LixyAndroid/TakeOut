@@ -8,7 +8,8 @@ import dagger.Component
 /**
  * Created by lidongzhi on 2017/8/30.
  */
-@Component(modules = arrayOf(HomeFragmentModule::class)) interface HomeFragmentComponent {
+@Component(modules = arrayOf(HomeFragmentModule::class))
+interface HomeFragmentComponent {
 
     fun inject(homeFragment: HomeFragment)
 }

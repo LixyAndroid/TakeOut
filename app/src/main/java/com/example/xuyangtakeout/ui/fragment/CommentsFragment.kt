@@ -15,7 +15,7 @@ import android.widget.TextView
  * on 2019/5/20 20:45.
  */
 
-class CommentsFragment : Fragment(){
+class CommentsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val commentsView = TextView(activity)

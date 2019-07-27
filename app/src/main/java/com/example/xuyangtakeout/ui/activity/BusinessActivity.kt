@@ -26,56 +26,56 @@ import com.example.xuyangtakeout.utils.CommonUtil.Companion.checkDeviceHasNaviga
 import com.example.xuyangtakeout.utils.TakeoutApp
 
 
-
 /**
  * Created by Mloong
  * on 2019/5/20 20:27.
  */
 
-class BusinessActivity:AppCompatActivity(), View.OnClickListener {
+class BusinessActivity : AppCompatActivity(), View.OnClickListener {
 
     var hasSelectInfo = false
-    lateinit var seller :Seller
+    lateinit var seller: Seller
     private fun processIntent() {
-        if( intent.hasExtra("hasSelectInfo")){
+        if (intent.hasExtra("hasSelectInfo")) {
             hasSelectInfo = intent.getBooleanExtra("hasSelectInfo", false)
             seller = intent.getSerializableExtra("seller") as Seller
-            tvDeliveryFee.text = "另需派送费"+PriceFormater.format(seller.deliveryFee.toFloat())
+            tvDeliveryFee.text = "另需派送费" + PriceFormater.format(seller.deliveryFee.toFloat())
             tvSendPrice.text = PriceFormater.format(seller.sendPrice.toFloat()) + "起送"
         }
 
 
     }
 
-    var bottomSheetView:View? = null
-    lateinit var rvCart:RecyclerView
+    var bottomSheetView: View? = null
+    lateinit var rvCart: RecyclerView
     lateinit var cartAdapter: CartRvAdapter
 
 
     override fun onClick(v: View?) {
 
 
-        when(v?.id){
-            R.id.bottom ->showOrHideCart()
+        when (v?.id) {
+            R.id.bottom -> showOrHideCart()
             R.id.tvSubmit -> {
-                val intent:Intent = Intent(this,ConfirmOrderActivity::class.java)
+                val intent: Intent = Intent(this, ConfirmOrderActivity::class.java)
 
-                intent.putExtra("countPrice",tvCountPrice.text)
+                intent.putExtra("countPrice", tvCountPrice.text)
 
                 startActivity(intent)
             }
         }
     }
 
-     fun showOrHideCart() {
+    fun showOrHideCart() {
         if (bottomSheetView == null) {
             //加载要显示的布局
-            bottomSheetView = LayoutInflater.from(this).inflate(R.layout.cart_list, window.decorView as ViewGroup, false)
+            bottomSheetView =
+                LayoutInflater.from(this).inflate(R.layout.cart_list, window.decorView as ViewGroup, false)
 
-            rvCart = bottomSheetView!!.findViewById(R.id.rvCart)  as RecyclerView
+            rvCart = bottomSheetView!!.findViewById(R.id.rvCart) as RecyclerView
             rvCart.layoutManager = LinearLayoutManager(this)
 
-            cartAdapter =  CartRvAdapter(this)
+            cartAdapter = CartRvAdapter(this)
             rvCart.adapter = cartAdapter
 
             val tvClear = bottomSheetView!!.findViewById(R.id.tvClear) as TextView
@@ -84,10 +84,10 @@ class BusinessActivity:AppCompatActivity(), View.OnClickListener {
                 var builder = AlertDialog.Builder(this)
 
                 builder.setTitle("确定都不吃了啊")
-                builder.setPositiveButton("是，我要减肥", object :DialogInterface.OnClickListener{
+                builder.setPositiveButton("是，我要减肥", object : DialogInterface.OnClickListener {
                     override fun onClick(dialog: DialogInterface?, which: Int) {
                         //开始清空购物车,把购物车中商品数量重置为0
-                        val goodsFragment:GoodsFragment = fragments.get(0) as GoodsFragment
+                        val goodsFragment: GoodsFragment = fragments.get(0) as GoodsFragment
                         goodsFragment.goodsFragmentPresenter.clearCart()
 
                         cartAdapter.notifyDataSetChanged()
@@ -112,7 +112,7 @@ class BusinessActivity:AppCompatActivity(), View.OnClickListener {
 
 
                 })
-                builder.setNegativeButton("不，我只是点错了",object :DialogInterface.OnClickListener{
+                builder.setNegativeButton("不，我只是点错了", object : DialogInterface.OnClickListener {
                     override fun onClick(dialog: DialogInterface?, which: Int) {
 
                     }
@@ -130,11 +130,11 @@ class BusinessActivity:AppCompatActivity(), View.OnClickListener {
 
         } else {
             //显示BottomSheetLayout里面的内容
-            val goodsFragment:GoodsFragment = fragments.get(0) as GoodsFragment
+            val goodsFragment: GoodsFragment = fragments.get(0) as GoodsFragment
             val cartList = goodsFragment.goodsFragmentPresenter.getCartList()
             cartAdapter.setCart(cartList)
-            if (cartList.size >0){
-            bottomSheetLayout.showWithSheetView(bottomSheetView)
+            if (cartList.size > 0) {
+                bottomSheetLayout.showWithSheetView(bottomSheetView)
             }
         }
     }
@@ -142,16 +142,15 @@ class BusinessActivity:AppCompatActivity(), View.OnClickListener {
 
     private fun clearRedDot() {
 
-        val goodsFragment:GoodsFragment = fragments.get(0) as GoodsFragment
+        val goodsFragment: GoodsFragment = fragments.get(0) as GoodsFragment
         val goodsTypeList = goodsFragment.goodsFragmentPresenter.goodsTypeList
-        for (i in 0 until goodsTypeList.size){
-            val  goodsTypeInfo = goodsTypeList.get(i)
+        for (i in 0 until goodsTypeList.size) {
+            val goodsTypeInfo = goodsTypeList.get(i)
             goodsTypeInfo.redDOTCount = 0
 
         }
 
     }
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -160,9 +159,9 @@ class BusinessActivity:AppCompatActivity(), View.OnClickListener {
         processIntent()
 
         //判断设备是否有虚拟按键，如果有增加paddingBottom = 50dp
-        if (checkDeviceHasNavigationBar(this)){
+        if (checkDeviceHasNavigationBar(this)) {
             // val x = getNavigationBarHeight(this)
-            fl_Container.setPadding(0,0,0,48.dip2px())
+            fl_Container.setPadding(0, 0, 0, 48.dip2px())
         }
 
         vp.adapter = BusinessFragmentAdapter()
@@ -174,28 +173,26 @@ class BusinessActivity:AppCompatActivity(), View.OnClickListener {
     }
 
 
+    val titles = listOf<String>("商品", "商家", "评论")
 
-    val titles = listOf<String>("商品","商家","评论")
-  inner  class BusinessFragmentAdapter : FragmentPagerAdapter(fragmentManager) {
+    inner class BusinessFragmentAdapter : FragmentPagerAdapter(fragmentManager) {
 
-      //出现标题
-      override fun getPageTitle(position: Int): CharSequence? {
-          return titles.get(position)
-      }
+        //出现标题
+        override fun getPageTitle(position: Int): CharSequence? {
+            return titles.get(position)
+        }
 
-      override fun getItem(position: Int): Fragment {
-          return  fragments.get(position)
-      }
-
-
-      override fun getCount(): Int {
-            return  titles.size
-      }
+        override fun getItem(position: Int): Fragment {
+            return fragments.get(position)
+        }
 
 
-  }
+        override fun getCount(): Int {
+            return titles.size
+        }
 
 
+    }
 
 
     val fragments = listOf<Fragment>(GoodsFragment(), SellerFragment(), CommentsFragment())
@@ -211,53 +208,49 @@ class BusinessActivity:AppCompatActivity(), View.OnClickListener {
     }
 
 
-
-
-
     fun addImageButton(ib: ImageButton, width: Int, height: Int) {
 
-        fl_Container.addView(ib,width,height)
+        fl_Container.addView(ib, width, height)
 
     }
 
     fun getCartLocation(): IntArray {
 
 
-        val  destLocation = IntArray(2)
+        val destLocation = IntArray(2)
         imgCart.getLocationInWindow(destLocation)
-        return  destLocation
+        return destLocation
     }
 
 
     fun updateCarUi() {
         //更新数量，更新总价
         var count = 0
-        var  countPrice = 0.0f
+        var countPrice = 0.0f
 
         //哪些商品属于购物车？
-        val goodsFragment:GoodsFragment = fragments.get(0) as GoodsFragment
+        val goodsFragment: GoodsFragment = fragments.get(0) as GoodsFragment
         val cartList = goodsFragment.goodsFragmentPresenter.getCartList()
-        for (i in 0 until  cartList.size){
+        for (i in 0 until cartList.size) {
             val goodsInfo = cartList.get(i)
             count += goodsInfo.count
             countPrice += goodsInfo.count * goodsInfo.newPrice.toFloat()
 
         }
         tvSelectNum.text = count.toString()
-        if (count >0){
+        if (count > 0) {
             tvSelectNum.visibility = View.VISIBLE
-        }
-        else{
+        } else {
 
             tvSelectNum.visibility = View.GONE
         }
 
         tvCountPrice.text = countPrice.toString()
-        if (countPrice >= seller.sendPrice.toFloat()){
+        if (countPrice >= seller.sendPrice.toFloat()) {
             tvSubmit.visibility = View.VISIBLE
 
             tvSendPrice.visibility = View.GONE
-        }else{
+        } else {
             tvSubmit.visibility = View.GONE
 
             tvSendPrice.visibility = View.VISIBLE
@@ -265,10 +258,6 @@ class BusinessActivity:AppCompatActivity(), View.OnClickListener {
         }
 
     }
-
-
-
-
 
 
 }

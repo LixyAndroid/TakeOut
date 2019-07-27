@@ -10,7 +10,7 @@ import cn.jpush.android.api.CustomMessage
 import cn.jpush.android.api.NotificationMessage
 import cn.jpush.android.service.JPushMessageReceiver
 
-class PushMessageReceiver : JPushMessageReceiver(){
+class PushMessageReceiver : JPushMessageReceiver() {
 
     override fun onMessage(context: Context, customMessage: CustomMessage) {
         Log.e(TAG, "[onMessage] $customMessage")

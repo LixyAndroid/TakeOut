@@ -30,28 +30,29 @@ class AddressRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView
     override fun getItemCount(): Int {
         return addressList.size
     }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as AddressItemHolder).bindData(addressList.get(position))
     }
 
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val itemView = LayoutInflater.from(context).inflate(R.layout.item_receipt_address,parent,false)
+        val itemView = LayoutInflater.from(context).inflate(R.layout.item_receipt_address, parent, false)
         return AddressItemHolder(itemView)
     }
 
-    inner class AddressItemHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
+    inner class AddressItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ivEdit: ImageView
         val tvname: TextView
-        val tv_sex:TextView
-        val tv_phone:TextView
-        val tv_label:TextView
-        val tv_address:TextView
-        lateinit var address :RecepitAddressBean
+        val tv_sex: TextView
+        val tv_phone: TextView
+        val tv_label: TextView
+        val tv_address: TextView
+        lateinit var address: RecepitAddressBean
+
         init {
             ivEdit = itemView.findViewById(R.id.iv_edit) as ImageView
-            ivEdit.setOnClickListener{
+            ivEdit.setOnClickListener {
                 val intent = Intent(context, AddOrEditAddressActivity::class.java)
                 intent.putExtra("addressBean", address)
                 context.startActivity(intent)

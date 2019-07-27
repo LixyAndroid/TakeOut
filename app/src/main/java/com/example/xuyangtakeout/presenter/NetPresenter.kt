@@ -16,14 +16,14 @@ import retrofit2.converter.gson.GsonConverterFactory
  * on 2019/5/19 17:14.
  */
 
-open abstract  class NetPresenter {
+open abstract class NetPresenter {
     val takeoutService: TakeoutService
 
     init {
-        Log.e(Constraints.TAG,"开始请求网络数据...")
+        Log.e(Constraints.TAG, "开始请求网络数据...")
         val retrofit = Retrofit.Builder()
             //本地
-             // .baseUrl("http://10.23.15.6:8080/TakeOutService/")
+            //.baseUrl("http://10.23.15.6:8080/TakeOutService/")
             //腾讯云IP
             .baseUrl("http://203.195.245.169:8080/TakeOut/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -34,7 +34,6 @@ open abstract  class NetPresenter {
     }
 
     abstract fun parserJson(json: String)
-
 
 
     val callback = object : Callback<ResponseInfo> {

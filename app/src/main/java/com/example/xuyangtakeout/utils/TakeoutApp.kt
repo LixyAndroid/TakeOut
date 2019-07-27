@@ -8,7 +8,6 @@ import com.mob.MobSDK
 import java.util.concurrent.CopyOnWriteArrayList
 
 
-
 /**
  * Created by Mloong
  * on 2019/5/19 16:25.
@@ -106,8 +105,6 @@ class TakeoutApp : MobApplication() {
     }
 
 
-
-
     //应用程序的入口
     override fun onCreate() {
         super.onCreate()
@@ -119,7 +116,6 @@ class TakeoutApp : MobApplication() {
 
         JPushInterface.setDebugMode(true)
         JPushInterface.init(this)
-
 
 
     }

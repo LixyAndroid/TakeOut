@@ -30,7 +30,7 @@ import kotlin.collections.ArrayList
  *  订单观察者
  */
 
-class OrderRvAdapter(val context: Context):RecyclerView.Adapter<RecyclerView.ViewHolder>(),Observer{
+class OrderRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), Observer {
 
     init {
         OrderObservable.instance.addObserver(this) //让观察者和被观察者建立绑定关系
@@ -45,15 +45,15 @@ class OrderRvAdapter(val context: Context):RecyclerView.Adapter<RecyclerView.Vie
 
         //更新UI
 
-        val jsonObj :JSONObject = JSONObject( data as String)
+        val jsonObj: JSONObject = JSONObject(data as String)
         val pushOrderId = jsonObj.getString("orderId")
-        val  pushType = jsonObj.getString("type")
-        var  index = -1
+        val pushType = jsonObj.getString("type")
+        var index = -1
 
-        for (i  in 0 until orderList.size){
+        for (i in 0 until orderList.size) {
 
             val order = orderList.get(i)
-            if (order.id.equals(pushOrderId)){
+            if (order.id.equals(pushOrderId)) {
 
                 order.type = pushType
 
@@ -70,10 +70,10 @@ class OrderRvAdapter(val context: Context):RecyclerView.Adapter<RecyclerView.Vie
     }
 
 
-    private var orderList:List<Order> = ArrayList<Order>()
+    private var orderList: List<Order> = ArrayList<Order>()
 
 
-    fun setOrderData(orders: List<Order>){
+    fun setOrderData(orders: List<Order>) {
         this.orderList = orders
         notifyDataSetChanged()
     }
@@ -84,10 +84,10 @@ class OrderRvAdapter(val context: Context):RecyclerView.Adapter<RecyclerView.Vie
         // val itemView = View.inflate(context,R.layout.item_order_item,null)
         //TODO:没有填充满，原因是recycleview的孩子，测量模式是UNSPECIFY
         //通过返回值已经addview,如果attachToRoot使用true会再一次addView()，就会报错
-        val itemView =LayoutInflater.from(context).inflate(com.example.xuyangtakeout.R.layout.item_order_item,parent,false)
+        val itemView =
+            LayoutInflater.from(context).inflate(com.example.xuyangtakeout.R.layout.item_order_item, parent, false)
         return OrderItemHolder(itemView)
     }
-
 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -102,17 +102,18 @@ class OrderRvAdapter(val context: Context):RecyclerView.Adapter<RecyclerView.Vie
     }
 
 
-    inner  class  OrderItemHolder(item:View):RecyclerView.ViewHolder(item){
+    inner class OrderItemHolder(item: View) : RecyclerView.ViewHolder(item) {
         fun binData(order: Order) {
             this.order = order
             tvSellerName.text = order.seller.name
-            tvOrderType.text =getOrderTypeInfo( order.type)
+            tvOrderType.text = getOrderTypeInfo(order.type)
 
         }
 
-        val  tvSellerName:TextView
-        val tvOrderType:TextView
-        lateinit var order:Order
+        val tvSellerName: TextView
+        val tvOrderType: TextView
+        lateinit var order: Order
+
         init {
             tvSellerName = item.find(R.id.tv_order_item_seller_name)
 
@@ -120,9 +121,9 @@ class OrderRvAdapter(val context: Context):RecyclerView.Adapter<RecyclerView.Vie
             tvOrderType = item.find(R.id.tv_order_item_type)
 
             item.setOnClickListener {
-                val intent:Intent = Intent(context, OrderDetailActivity::class.java)
-                intent.putExtra("orderId",order.id)
-                intent.putExtra("type",order.type)
+                val intent: Intent = Intent(context, OrderDetailActivity::class.java)
+                intent.putExtra("orderId", order.id)
+                intent.putExtra("type", order.type)
                 context.startActivity(intent)
             }
 

@@ -21,9 +21,9 @@ import org.jetbrains.anko.find
 import org.jetbrains.anko.toast
 import javax.inject.Inject
 
-class HomeFragment:Fragment(){
+class HomeFragment : Fragment() {
     lateinit var homeRvAdapter: HomeRvAdapter
-    lateinit var rvHome:RecyclerView
+    lateinit var rvHome: RecyclerView
 
     @Inject
     lateinit var homeFragmentPresenter: HomeFragmentPresenter
@@ -37,19 +37,21 @@ class HomeFragment:Fragment(){
         rvHome.adapter = homeRvAdapter
 
 
-      //  homeFragmentPresenter = HomeFragmentPresenter(this)
+        //  homeFragmentPresenter = HomeFragmentPresenter(this)
         //TODO:解耦View层和P层，通过dagger2（基于注解的依赖注入）生成HomeFragmentPresenter
         DaggerHomeFragmentComponent.builder().homeFragmentModule(HomeFragmentModule(this)).build().inject(this)
 
 
 
         distance = 75.dp2x()
-        return  view
+        return view
     }
-    fun Int.dp2x():Int{
+
+    fun Int.dp2x(): Int {
         return TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
-            toFloat(),resources.displayMetrics).toInt()
+            toFloat(), resources.displayMetrics
+        ).toInt()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -59,8 +61,8 @@ class HomeFragment:Fragment(){
 
 
     val datas: ArrayList<String> = ArrayList<String>()
-    var sum:Int = 0
-    var distance:Int = 0
+    var sum: Int = 0
+    var distance: Int = 0
     var alpha = 55
 
     @SuppressLint("NewApi")
@@ -69,13 +71,13 @@ class HomeFragment:Fragment(){
 //            datas.add("我是商家：" + i)
 //        }
         homeFragmentPresenter.getHomeInfo()
-    //    homeRvAdapter.setData(datas)
+        //    homeRvAdapter.setData(datas)
 
 
     }
 
 
-    val allList:ArrayList<Seller> = ArrayList()
+    val allList: ArrayList<Seller> = ArrayList()
     fun onHomeSuccess(nearbySellers: List<Seller>, otherSellers: List<Seller>) {
         allList.clear()
         allList.addAll(nearbySellers)
@@ -86,7 +88,7 @@ class HomeFragment:Fragment(){
 
 
         //有数据可以滚动才可以监听滚动事件
-        rvHome.setOnScrollListener(object :RecyclerView.OnScrollListener(){
+        rvHome.setOnScrollListener(object : RecyclerView.OnScrollListener() {
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
@@ -94,15 +96,15 @@ class HomeFragment:Fragment(){
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                sum +=dy
+                sum += dy
                 //  Log.e("home","sum :$sum")
-                if (sum > distance){
-                    alpha =255
-                }else{
-                    alpha = sum*200 / distance
+                if (sum > distance) {
+                    alpha = 255
+                } else {
+                    alpha = sum * 200 / distance
                     alpha += 55
                 }
-                ll_title_container.setBackgroundColor(Color.argb(alpha,0x2f,0x67,0x9b))
+                ll_title_container.setBackgroundColor(Color.argb(alpha, 0x2f, 0x67, 0x9b))
 
             }
 

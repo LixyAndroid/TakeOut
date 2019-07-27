@@ -29,25 +29,28 @@ import com.example.xuyangtakeout.model.bean.GoodsInfo as goodsInfo
  * on 2019/5/20 22:52
  */
 
-class GoodsAdapter(val  context: Context,val goodsFragment: GoodsFragment) :BaseAdapter(),StickyListHeadersAdapter{
-    companion object val DURATION:Long = 1000
+class GoodsAdapter(val context: Context, val goodsFragment: GoodsFragment) : BaseAdapter(), StickyListHeadersAdapter {
+    companion object
 
-    inner  class GoodsItemHolder(itemView: View) : View.OnClickListener {
-        lateinit  var goodsInfo: goodsInfo
+    val DURATION: Long = 1000
+
+    inner class GoodsItemHolder(itemView: View) : View.OnClickListener {
+        lateinit var goodsInfo: goodsInfo
 
         override fun onClick(v: View?) {
-            var  isAdd:Boolean = false
+            var isAdd: Boolean = false
 
-            when(v?.id){
-                R.id.ib_add ->{
+            when (v?.id) {
+                R.id.ib_add -> {
                     isAdd = true
-                    doAppOperation()}
-                R.id.ib_minus ->doMinusOperation()
+                    doAppOperation()
+                }
+                R.id.ib_minus -> doMinusOperation()
             }
 
             processRedDotCount(isAdd)
 
-            (goodsFragment.activity as  BusinessActivity).updateCarUi()
+            (goodsFragment.activity as BusinessActivity).updateCarUi()
         }
 
         private fun processRedDotCount(isAdd: Boolean) {
@@ -61,10 +64,10 @@ class GoodsAdapter(val  context: Context,val goodsFragment: GoodsFragment) :Base
 
             val goodsTypeInfo = goodsFragment.goodsFragmentPresenter.goodsTypeList.get(typePosition)
             var redDotCount = goodsTypeInfo.redDOTCount
-            if (isAdd){
+            if (isAdd) {
                 redDotCount++
 
-            }else{
+            } else {
                 redDotCount--
             }
             goodsTypeInfo.redDOTCount = redDotCount
@@ -73,23 +76,22 @@ class GoodsAdapter(val  context: Context,val goodsFragment: GoodsFragment) :Base
             goodsFragment.goodsTypeAdapter.notifyDataSetChanged()
 
 
-
         }
 
         private fun doMinusOperation() {
             //改变count值
             var count = goodsInfo.count
-            if (count ==1){
+            if (count == 1) {
                 //最后一次点击加号执行动画级
 
-                val hideAnimationSet:AnimationSet = getHideAnimation()
+                val hideAnimationSet: AnimationSet = getHideAnimation()
                 tvCount.startAnimation(hideAnimationSet)
                 btnMinus.startAnimation(hideAnimationSet)
                 //删除缓存
                 TakeoutApp.sInstance.deleteCacheSelectedInfo(goodsInfo.id)
-            }else{
+            } else {
                 //更新缓存
-                TakeoutApp.sInstance.updateCacheSelectedInfo(goodsInfo.id,Constants.MINUS)
+                TakeoutApp.sInstance.updateCacheSelectedInfo(goodsInfo.id, Constants.MINUS)
 
             }
 
@@ -102,27 +104,30 @@ class GoodsAdapter(val  context: Context,val goodsFragment: GoodsFragment) :Base
             notifyDataSetChanged()
 
 
-
-
-
         }
-
 
 
         private fun doAppOperation() {
             //改变count值
             var count = goodsInfo.count
-            if (count ==0){
+            if (count == 0) {
                 //第一次点击加号执行动画级
 
-                val showAnimationSet:AnimationSet = getShowAnimation()
+                val showAnimationSet: AnimationSet = getShowAnimation()
                 tvCount.startAnimation(showAnimationSet)
                 btnMinus.startAnimation(showAnimationSet)
                 //添加缓存
-                TakeoutApp.sInstance.addCacheSelectedInfo(CacheSelectedInfo(goodsInfo.sellerId,goodsInfo.typeId,goodsInfo.id,1))
-            } else{
+                TakeoutApp.sInstance.addCacheSelectedInfo(
+                    CacheSelectedInfo(
+                        goodsInfo.sellerId,
+                        goodsInfo.typeId,
+                        goodsInfo.id,
+                        1
+                    )
+                )
+            } else {
                 //更新缓存
-                TakeoutApp.sInstance.updateCacheSelectedInfo(goodsInfo.id,Constants.ADD)
+                TakeoutApp.sInstance.updateCacheSelectedInfo(goodsInfo.id, Constants.ADD)
             }
 
 
@@ -130,7 +135,6 @@ class GoodsAdapter(val  context: Context,val goodsFragment: GoodsFragment) :Base
             //改变数据层
             goodsInfo.count = count
             notifyDataSetChanged()
-
 
 
             /**
@@ -146,20 +150,20 @@ class GoodsAdapter(val  context: Context,val goodsFragment: GoodsFragment) :Base
             //大小，位置，背景全部相同
             ib.setBackgroundResource(R.drawable.button_add)
 
-            val  srcLocation = IntArray(2)
+            val srcLocation = IntArray(2)
             btnAdd.getLocationInWindow(srcLocation)
 
-           // Log.e("location",srcLocation[0].toString()+":"+srcLocation[1])
+            // Log.e("location",srcLocation[0].toString()+":"+srcLocation[1])
 
             ib.x = srcLocation[0].toFloat()
             ib.y = srcLocation[1].toFloat()
-            (goodsFragment .activity as BusinessActivity).addImageButton(ib,btnAdd.width,btnAdd.height)
+            (goodsFragment.activity as BusinessActivity).addImageButton(ib, btnAdd.width, btnAdd.height)
 
 
             //执行抛物线动画（水平位移，垂直加速位移
 
             val destLocation = (goodsFragment.activity as BusinessActivity).getCartLocation()
-            val parabolaAnim:AnimationSet =  getParabolaAnimation(ib,srcLocation,destLocation)
+            val parabolaAnim: AnimationSet = getParabolaAnimation(ib, srcLocation, destLocation)
             ib.startAnimation(parabolaAnim)
             //动画完成后回收克隆的+号
 
@@ -167,30 +171,45 @@ class GoodsAdapter(val  context: Context,val goodsFragment: GoodsFragment) :Base
         }
 
 
-        private fun getParabolaAnimation(ib:ImageButton,srcLocation:IntArray,destLocation:IntArray): AnimationSet {
+        private fun getParabolaAnimation(ib: ImageButton, srcLocation: IntArray, destLocation: IntArray): AnimationSet {
 
 
-
-            val parabolaAnim:AnimationSet = AnimationSet(false)
+            val parabolaAnim: AnimationSet = AnimationSet(false)
 
             parabolaAnim.duration = DURATION
             val translateX = TranslateAnimation(
-                Animation.ABSOLUTE, 0.0f, Animation.ABSOLUTE, destLocation[0].toFloat() - srcLocation[0].toFloat(), Animation.ABSOLUTE, 0.0f, Animation.ABSOLUTE, 0.0f)
+                Animation.ABSOLUTE,
+                0.0f,
+                Animation.ABSOLUTE,
+                destLocation[0].toFloat() - srcLocation[0].toFloat(),
+                Animation.ABSOLUTE,
+                0.0f,
+                Animation.ABSOLUTE,
+                0.0f
+            )
 
-            translateX.duration =DURATION
+            translateX.duration = DURATION
             parabolaAnim.addAnimation(translateX)
 
             val translateY = TranslateAnimation(
-                Animation.ABSOLUTE, 0.0f, Animation.ABSOLUTE, 0.0f, Animation.ABSOLUTE, 0.0f, Animation.ABSOLUTE, destLocation[1].toFloat() - srcLocation[1].toFloat())
+                Animation.ABSOLUTE,
+                0.0f,
+                Animation.ABSOLUTE,
+                0.0f,
+                Animation.ABSOLUTE,
+                0.0f,
+                Animation.ABSOLUTE,
+                destLocation[1].toFloat() - srcLocation[1].toFloat()
+            )
 
             translateY.setInterpolator(AccelerateInterpolator())
-            translateY.duration =DURATION
+            translateY.duration = DURATION
             parabolaAnim.addAnimation(translateY)
-            parabolaAnim.setAnimationListener(object :Animation.AnimationListener{
+            parabolaAnim.setAnimationListener(object : Animation.AnimationListener {
 
                 override fun onAnimationEnd(animation: Animation?) {
                     val viewParent = ib.parent
-                    if (viewParent != null){
+                    if (viewParent != null) {
                         (viewParent as ViewGroup).removeView(ib)
                     }
 
@@ -208,21 +227,30 @@ class GoodsAdapter(val  context: Context,val goodsFragment: GoodsFragment) :Base
             return parabolaAnim
 
 
-
         }
 
         private fun getHideAnimation(): AnimationSet {
-            var  animationSet:AnimationSet = AnimationSet(false)
+            var animationSet: AnimationSet = AnimationSet(false)
             animationSet.duration = DURATION
-            val alphaAnim:Animation = AlphaAnimation(1f,0.0f)
+            val alphaAnim: Animation = AlphaAnimation(1f, 0.0f)
             alphaAnim.duration = DURATION
             animationSet.addAnimation(alphaAnim)
-            val  rotateAnima :Animation = RotateAnimation(720.0f,0.0f,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f)
+            val rotateAnima: Animation =
+                RotateAnimation(720.0f, 0.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
             rotateAnima.duration = DURATION
             animationSet.addAnimation(rotateAnima)
 
-            val  translateAnimation:Animation = TranslateAnimation(Animation.RELATIVE_TO_SELF,0.0f, Animation.RELATIVE_TO_SELF,2.0f, Animation.RELATIVE_TO_SELF,0.0f, Animation.RELATIVE_TO_SELF,0.0f)
-            translateAnimation.duration =DURATION
+            val translateAnimation: Animation = TranslateAnimation(
+                Animation.RELATIVE_TO_SELF,
+                0.0f,
+                Animation.RELATIVE_TO_SELF,
+                2.0f,
+                Animation.RELATIVE_TO_SELF,
+                0.0f,
+                Animation.RELATIVE_TO_SELF,
+                0.0f
+            )
+            translateAnimation.duration = DURATION
 
             animationSet.addAnimation(translateAnimation)
             return animationSet
@@ -230,33 +258,42 @@ class GoodsAdapter(val  context: Context,val goodsFragment: GoodsFragment) :Base
 
 
         private fun getShowAnimation(): AnimationSet {
-            var  animationSet:AnimationSet = AnimationSet(false)
+            var animationSet: AnimationSet = AnimationSet(false)
             animationSet.duration = DURATION
-            val alphaAnim:Animation = AlphaAnimation(0.0f,1.0f)
+            val alphaAnim: Animation = AlphaAnimation(0.0f, 1.0f)
             alphaAnim.duration = DURATION
             animationSet.addAnimation(alphaAnim)
-            val  rotateAnima :Animation = RotateAnimation(0.0f,720.0f,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f)
+            val rotateAnima: Animation =
+                RotateAnimation(0.0f, 720.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
             rotateAnima.duration = DURATION
             animationSet.addAnimation(rotateAnima)
 
-            val  translateAnimation:Animation = TranslateAnimation(Animation.RELATIVE_TO_SELF,2.0f, Animation.RELATIVE_TO_SELF,0.0f, Animation.RELATIVE_TO_SELF,0.0f, Animation.RELATIVE_TO_SELF,0.0f)
-            translateAnimation.duration =DURATION
+            val translateAnimation: Animation = TranslateAnimation(
+                Animation.RELATIVE_TO_SELF,
+                2.0f,
+                Animation.RELATIVE_TO_SELF,
+                0.0f,
+                Animation.RELATIVE_TO_SELF,
+                0.0f,
+                Animation.RELATIVE_TO_SELF,
+                0.0f
+            )
+            translateAnimation.duration = DURATION
 
             animationSet.addAnimation(translateAnimation)
             return animationSet
         }
 
 
-
-        val ivIcon:ImageView
-        val tvName:TextView
-        val tvForm :TextView
-        val tvMonthSale :TextView
-        val tvNewPrice :TextView
-        val tvOldPrice :TextView
-        val btnAdd:ImageButton
-        val btnMinus:ImageButton
-        val tvCount:TextView
+        val ivIcon: ImageView
+        val tvName: TextView
+        val tvForm: TextView
+        val tvMonthSale: TextView
+        val tvNewPrice: TextView
+        val tvOldPrice: TextView
+        val btnAdd: ImageButton
+        val btnMinus: ImageButton
+        val tvCount: TextView
 
         init {
             ivIcon = itemView.find(R.id.iv_icon)
@@ -267,40 +304,40 @@ class GoodsAdapter(val  context: Context,val goodsFragment: GoodsFragment) :Base
             tvOldPrice = itemView.find(R.id.tv_oldprice)
             tvCount = itemView.find(R.id.tv_count)
             btnAdd = itemView.find(R.id.ib_add)
-            btnMinus= itemView.find(R.id.ib_minus)
+            btnMinus = itemView.find(R.id.ib_minus)
 
 
             btnAdd.setOnClickListener(this)
             btnMinus.setOnClickListener(this)
         }
 
-        
+
         fun binData(goodsInfo: goodsInfo) {
             this.goodsInfo = goodsInfo
             Picasso.with(context).load(goodsInfo.icon).into(ivIcon)
-            tvName .text =goodsInfo.name
+            tvName.text = goodsInfo.name
 
-            tvForm.text=goodsInfo.form
+            tvForm.text = goodsInfo.form
             tvMonthSale.text = "月售${goodsInfo.monthSaleNum}份"
 //            tvNewPrice.text= "￥${goodsInfo.newPrice}"
 //            tvOldPrice.text="￥${goodsInfo.oldPrice}"
-                //货币转换
-            tvNewPrice.text= PriceFormater.format(goodsInfo.newPrice.toFloat())
+            //货币转换
+            tvNewPrice.text = PriceFormater.format(goodsInfo.newPrice.toFloat())
 
             tvOldPrice.text = PriceFormater.format(goodsInfo.oldPrice.toFloat())
             tvOldPrice.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
-            if (goodsInfo.oldPrice > 0){
+            if (goodsInfo.oldPrice > 0) {
                 tvOldPrice.visibility = View.VISIBLE
-            }else{
+            } else {
                 tvOldPrice.visibility = View.GONE
             }
-             //赋值处理
+            //赋值处理
             tvCount.text = goodsInfo.count.toString()
-            if (goodsInfo.count >0){
+            if (goodsInfo.count > 0) {
 
                 tvCount.visibility = View.VISIBLE
                 btnMinus.visibility = View.VISIBLE
-            }else{
+            } else {
                 tvCount.visibility = View.INVISIBLE
                 btnMinus.visibility = View.INVISIBLE
             }
@@ -311,23 +348,21 @@ class GoodsAdapter(val  context: Context,val goodsFragment: GoodsFragment) :Base
     }
 
 
+    var goodsList: List<goodsInfo> = ArrayList()
 
-
-    var goodsList :List<goodsInfo> = ArrayList()
-
-    fun setDatas(goodsInfoList: List<goodsInfo>){
+    fun setDatas(goodsInfoList: List<goodsInfo>) {
         this.goodsList = goodsInfoList
         notifyDataSetChanged()
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
-        var  itemView:View
+        var itemView: View
 
 
-        val  goodsItemHolder:GoodsItemHolder
+        val goodsItemHolder: GoodsItemHolder
 
-        if (convertView ==null){
+        if (convertView == null) {
             itemView = LayoutInflater.from(context).inflate(R.layout.item_goods, parent, false)
 
             goodsItemHolder = GoodsItemHolder(itemView)
@@ -335,14 +370,14 @@ class GoodsAdapter(val  context: Context,val goodsFragment: GoodsFragment) :Base
 
             itemView.tag = goodsItemHolder
 
-        }else{
+        } else {
             itemView = convertView
             goodsItemHolder = itemView.tag as GoodsItemHolder
 
         }
 
         goodsItemHolder.binData(goodsList.get(position))
-        return  itemView
+        return itemView
 
     }
 
@@ -362,17 +397,18 @@ class GoodsAdapter(val  context: Context,val goodsFragment: GoodsFragment) :Base
     }
 
     override fun getHeaderId(position: Int): Long {
-        val  goodsInfo: goodsInfo = goodsList.get(position)
-            return  goodsInfo.typeId.toLong()
+        val goodsInfo: goodsInfo = goodsList.get(position)
+        return goodsInfo.typeId.toLong()
 
     }
 
     override fun getHeaderView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
-        val goodsInfo : goodsInfo = goodsList.get(position)
+        val goodsInfo: goodsInfo = goodsList.get(position)
         val typeName = goodsInfo.typeName
-        val textView : TextView= LayoutInflater.from(context).inflate(R.layout.item_type_header,parent,false) as TextView
-        textView.text =typeName
+        val textView: TextView =
+            LayoutInflater.from(context).inflate(R.layout.item_type_header, parent, false) as TextView
+        textView.text = typeName
         textView.setTextColor(Color.BLACK)
         return textView
 

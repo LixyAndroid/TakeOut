@@ -8,7 +8,7 @@ import cn.jpush.android.service.WakedResultReceiver
  * on 2019/5/19 22:43.
  */
 
-class MyWakedResultReceiver : WakedResultReceiver(){
+class MyWakedResultReceiver : WakedResultReceiver() {
     override fun onWake(p0: Context?, p1: Int) {
         super.onWake(p0, p1)
     }

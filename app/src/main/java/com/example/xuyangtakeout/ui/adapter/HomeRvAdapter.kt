@@ -25,7 +25,7 @@ import org.jetbrains.anko.find
  * Time: 23:17
  */
 
-class HomeRvAdapter(val context: Context):RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class HomeRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     companion object {
@@ -63,9 +63,9 @@ class HomeRvAdapter(val context: Context):RecyclerView.Adapter<RecyclerView.View
 
     override fun getItemCount(): Int {
 
-        if (mDatas.size>0) {
+        if (mDatas.size > 0) {
             return mDatas.size + 1
-        }else{
+        } else {
             return 0
         }
 
@@ -84,25 +84,37 @@ class HomeRvAdapter(val context: Context):RecyclerView.Adapter<RecyclerView.View
     }
 
 
-    var url_maps : HashMap<String,String> = HashMap()
-    inner class TitleHolder(item: View) : RecyclerView.ViewHolder(item) {
-        val sliderLayout : SliderLayout
+    var url_maps: HashMap<String, String> = HashMap()
 
+    inner class TitleHolder(item: View) : RecyclerView.ViewHolder(item) {
+        val sliderLayout: SliderLayout
 
 
         init {
 
-        sliderLayout = item.findViewById(R.id.slider)
+            sliderLayout = item.findViewById(R.id.slider)
         }
 
         fun bindData(data: String) {
-            if (url_maps.size == 0){
-                url_maps.put("Marvel's The Avengers", "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557475104513&di=1e18e262814f4a2259abee5592be962a&imgtype=0&src=http%3A%2F%2F08imgmini.eastday.com%2Fmobile%2F20190319%2F20190319082614_7b2724b5d733c80f78b9c5dc71fb2a9c_2_mwpm_03201609.jpg")
-                url_maps.put("Big Bang Theory", "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557474981869&di=bd67103f4d6b329ab64aea76dad468ff&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201312%2F23%2F20131223011936_UXnWe.jpeg")
-                url_maps.put("Break Prison", "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557476555844&di=69c76f170ef8a0d76f95c46813c2cc22&imgtype=0&src=http%3A%2F%2Fimages.fanpop.com%2Fimages%2Fimage_uploads%2FPrison-Break-prison-break-772275_1280_960.jpg")
-                url_maps.put("Game of Thrones","https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557474878055&di=43a05863851f7999a36a0ae6b27acb49&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fent%2Ftransform%2F20170801%2FaU3k-fyinvys9756735.jpg")
-                for ((key,value) in url_maps){
-                    var textSliderView:TextSliderView = TextSliderView(context)
+            if (url_maps.size == 0) {
+                url_maps.put(
+                    "Marvel's The Avengers",
+                    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557475104513&di=1e18e262814f4a2259abee5592be962a&imgtype=0&src=http%3A%2F%2F08imgmini.eastday.com%2Fmobile%2F20190319%2F20190319082614_7b2724b5d733c80f78b9c5dc71fb2a9c_2_mwpm_03201609.jpg"
+                )
+                url_maps.put(
+                    "Big Bang Theory",
+                    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557474981869&di=bd67103f4d6b329ab64aea76dad468ff&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201312%2F23%2F20131223011936_UXnWe.jpeg"
+                )
+                url_maps.put(
+                    "Break Prison",
+                    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557476555844&di=69c76f170ef8a0d76f95c46813c2cc22&imgtype=0&src=http%3A%2F%2Fimages.fanpop.com%2Fimages%2Fimage_uploads%2FPrison-Break-prison-break-772275_1280_960.jpg"
+                )
+                url_maps.put(
+                    "Game of Thrones",
+                    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557474878055&di=43a05863851f7999a36a0ae6b27acb49&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fent%2Ftransform%2F20170801%2FaU3k-fyinvys9756735.jpg"
+                )
+                for ((key, value) in url_maps) {
+                    var textSliderView: TextSliderView = TextSliderView(context)
                     textSliderView.description(key).image(value)
                     sliderLayout.addSlider(textSliderView)
                 }
@@ -114,15 +126,15 @@ class HomeRvAdapter(val context: Context):RecyclerView.Adapter<RecyclerView.View
     }
 
 
-  inner  class SellerHolder(item: View) : RecyclerView.ViewHolder(item) {
+    inner class SellerHolder(item: View) : RecyclerView.ViewHolder(item) {
 
-      val tvTitle: TextView
-      val ivLogo: ImageView
-      val rbScore: RatingBar
-      val tvSale: TextView
-      val tvSendPrice: TextView
-      val tvDistance: TextView
-      lateinit var mSeller: Seller
+        val tvTitle: TextView
+        val ivLogo: ImageView
+        val rbScore: RatingBar
+        val tvSale: TextView
+        val tvSendPrice: TextView
+        val tvDistance: TextView
+        lateinit var mSeller: Seller
 
         init {
             tvTitle = item.find(R.id.tv_title)
@@ -132,26 +144,23 @@ class HomeRvAdapter(val context: Context):RecyclerView.Adapter<RecyclerView.View
             tvSendPrice = item.find(R.id.tv_home_send_price)
             tvDistance = item.find(R.id.tv_home_distance)
             item.setOnClickListener {
-                val  intent:Intent = Intent(context, BusinessActivity::class.java)
+                val intent: Intent = Intent(context, BusinessActivity::class.java)
 
                 //读取谋客户在该店是否有缓存信息
                 //逐层读取，首先判断该店是否有缓存
 
                 var hasSelectInfo = false
                 val count = TakeoutApp.sInstance.queryCacheSelectedInfoBySellerId(mSeller.id.toInt())
-                if (count>0) {
+                if (count > 0) {
 
                     hasSelectInfo = true
                 }
 
-                intent.putExtra("seller",mSeller)
-                intent.putExtra("hasSelectInfo",hasSelectInfo)
+                intent.putExtra("seller", mSeller)
+                intent.putExtra("hasSelectInfo", hasSelectInfo)
                 context.startActivity(intent)
 
             }
-
-
-
 
 
         }

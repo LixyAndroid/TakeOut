@@ -30,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
             msg.arg1 = event
             msg.arg2 = result
             msg.obj = data
-            Handler(Looper.getMainLooper(), object : Handler.Callback{
+            Handler(Looper.getMainLooper(), object : Handler.Callback {
                 override fun handleMessage(msg: Message): Boolean {
                     val event = msg.arg1
                     val result = msg.arg2
@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
                         if (result == SMSSDK.RESULT_COMPLETE) {
                             // TODO 处理成功得到验证码的结果
                             // 请注意，此时只是完成了发送验证码的请求，验证码短信还需要几秒钟之后才送达
-                           // Log.e("sms", "获取验证码成功")
+                            // Log.e("sms", "获取验证码成功")
                             toast("获取验证码成功")
                         } else {
                             // TODO 处理错误的结果
@@ -72,15 +72,14 @@ class LoginActivity : AppCompatActivity() {
         setContentView(com.example.xuyangtakeout.R.layout.activity_login)
 
 
-        loginActivityPresenter  = LoginActivityPresenter(this)
+        loginActivityPresenter = LoginActivityPresenter(this)
 
         initListener()
 
         // 注册一个事件回调，用于处理SMSSDK接口请求的结果
         SMSSDK.registerEventHandler(eventHandler)
 
-        }
-
+    }
 
 
     // 使用完EventHandler需注销，否则可能出现内存泄漏
@@ -88,8 +87,6 @@ class LoginActivity : AppCompatActivity() {
         super.onDestroy()
         SMSSDK.unregisterEventHandler(eventHandler)
     }
-
-
 
 
     private fun initListener() {
@@ -120,7 +117,7 @@ class LoginActivity : AppCompatActivity() {
 
             }
 
-     //       loginActivityPresenter.loginByPhone(phone)
+            //       loginActivityPresenter.loginByPhone(phone)
         }
     }
 
@@ -140,10 +137,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     val handler = @SuppressLint("HandlerLeak")
-    object : Handler(){
+    object : Handler() {
         override fun handleMessage(msg: Message?) {
             super.handleMessage(msg)
-            when(msg!!.what){
+            when (msg!!.what) {
                 TIME_MINUS -> tv_user_code.text = "剩余时间(${time})秒"
                 TIME_IS_OUT -> {
                     tv_user_code.isEnabled = true
@@ -156,13 +153,14 @@ class LoginActivity : AppCompatActivity() {
     }
 
     var time = 60
-    inner class CutDownTask: Runnable {
+
+    inner class CutDownTask : Runnable {
         override fun run() {
-            while (time>0){
+            while (time > 0) {
                 //刷新剩余时间，当前子线程，使用handler
                 handler.sendEmptyMessage(TIME_MINUS)
                 SystemClock.sleep(999)
-                time --
+                time--
             }
             handler.sendEmptyMessage(TIME_IS_OUT)
         }

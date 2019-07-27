@@ -15,10 +15,10 @@ import com.example.xuyangtakeout.R
  * Created by Mloong
  * on 2019/5/27 18:53
  */
-class AroundRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class AroundRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var poiList = arrayListOf<PoiItem>()
 
-    fun setPoiItemList(list : ArrayList<PoiItem>){
+    fun setPoiItemList(list: ArrayList<PoiItem>) {
         this.poiList = list
         notifyDataSetChanged()
     }
@@ -26,8 +26,9 @@ class AroundRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.
     override fun getItemCount(): Int {
         return poiList.size
     }
-    override fun onCreateViewHolder(parent: ViewGroup,viewGroup: Int): RecyclerView.ViewHolder {
-        val itemView = LayoutInflater.from(context).inflate(R.layout.item_around_address,parent,false)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewGroup: Int): RecyclerView.ViewHolder {
+        val itemView = LayoutInflater.from(context).inflate(R.layout.item_around_address, parent, false)
         return AroundItemHolder(itemView)
 
     }
@@ -36,17 +37,18 @@ class AroundRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.
         (holder as AroundItemHolder).bindData(poiList.get(position))
     }
 
-    inner class AroundItemHolder(itemView : View) : RecyclerView.ViewHolder (itemView){
+    inner class AroundItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvTitle: TextView
         val tvAddress: TextView
+
         init {
-            tvTitle= itemView.findViewById(R.id.tv_title) as TextView
-            tvAddress= itemView.findViewById(R.id.tv_address) as TextView
+            tvTitle = itemView.findViewById(R.id.tv_title) as TextView
+            tvAddress = itemView.findViewById(R.id.tv_address) as TextView
             itemView.setOnClickListener {
                 val intent = Intent()
-                intent.putExtra("title",tvTitle.text)
-                intent.putExtra("address",tvAddress.text)
-                (context as Activity).setResult(200,intent)
+                intent.putExtra("title", tvTitle.text)
+                intent.putExtra("address", tvAddress.text)
+                (context as Activity).setResult(200, intent)
                 (context as Activity).finish()
             }
         }

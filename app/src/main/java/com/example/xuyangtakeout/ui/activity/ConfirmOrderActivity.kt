@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_confirm_order.tvSubmit
  * Created by Mloong
  * on 2019/5/22 20:46
  */
-class ConfirmOrderActivity: AppCompatActivity() {
+class ConfirmOrderActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,9 +26,9 @@ class ConfirmOrderActivity: AppCompatActivity() {
 
 
         //判断设备是否有虚拟按键，如果有增加paddingBottom = 50dp
-        if (checkDeviceHasNavigationBar(this)){
+        if (checkDeviceHasNavigationBar(this)) {
             // val x = getNavigationBarHeight(this)
-            activity_confirm_order.setPadding(0,0,0,48.dip2px())
+            activity_confirm_order.setPadding(0, 0, 0, 48.dip2px())
         }
 
         rl_location.setOnClickListener {
@@ -38,7 +38,7 @@ class ConfirmOrderActivity: AppCompatActivity() {
 
         tvSubmit.setOnClickListener {
             val intent = Intent(this, OnlinePaymentActivity::class.java)
-           intent.putExtra("Price",mTvCountPrice.text)
+            intent.putExtra("Price", mTvCountPrice.text)
 
 
             startActivity(intent)
@@ -48,7 +48,7 @@ class ConfirmOrderActivity: AppCompatActivity() {
     }
 
 
-    lateinit var  mTvCountPrice:TextView
+    lateinit var mTvCountPrice: TextView
     @SuppressLint("SetTextI18n")
     private fun processIntent() {
         if (intent != null) {
@@ -56,10 +56,8 @@ class ConfirmOrderActivity: AppCompatActivity() {
 
             mTvCountPrice = findViewById(R.id.tv_CountPrice)
             var mCountPrice = intent.getStringExtra("countPrice")
-            mCountPrice = (mCountPrice.toFloat() + 4f ).toString()
+            mCountPrice = (mCountPrice.toFloat() + 4f).toString()
             mTvCountPrice.text = "待支付$${mCountPrice}"
-
-
 
 
         }
@@ -68,9 +66,9 @@ class ConfirmOrderActivity: AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == 200){
-            if(data!=null) {
-                val address :RecepitAddressBean = data.getSerializableExtra("address") as RecepitAddressBean
+        if (resultCode == 200) {
+            if (data != null) {
+                val address: RecepitAddressBean = data.getSerializableExtra("address") as RecepitAddressBean
                 tv_name.text = address.username
                 tv_sex.text = address.sex
                 tv_phone.text = address.phone
@@ -81,15 +79,10 @@ class ConfirmOrderActivity: AppCompatActivity() {
     }
 
 
-
-
-
-
     fun Int.dip2px(): Int {
         val scale = resources.displayMetrics.density
         return (toFloat() * scale + 0.5f).toInt()
     }
-
 
 
 }

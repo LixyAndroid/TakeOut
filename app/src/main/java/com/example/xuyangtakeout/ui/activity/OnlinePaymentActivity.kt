@@ -18,9 +18,9 @@ import org.jetbrains.anko.find
  * Created by Mloong
  * on 2019/5/27 22:38
  */
-class OnlinePaymentActivity:AppCompatActivity()  {
+class OnlinePaymentActivity : AppCompatActivity() {
 
-    lateinit var confirmPay:Button
+    lateinit var confirmPay: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_online_payment)
@@ -37,14 +37,16 @@ class OnlinePaymentActivity:AppCompatActivity()  {
 
 
     }
+
     fun Int.dp2px(): Int {
         return TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
-            toFloat(), resources.displayMetrics).toInt()
+            toFloat(), resources.displayMetrics
+        ).toInt()
 
     }
 
-    lateinit var  mTvCountPrice: TextView
+    lateinit var mTvCountPrice: TextView
     @SuppressLint("SetTextI18n")
     private fun processIntent() {
         if (intent != null) {
@@ -53,8 +55,6 @@ class OnlinePaymentActivity:AppCompatActivity()  {
             mTvCountPrice.setText(mCountPrice)
         }
     }
-
-
 
 
 }

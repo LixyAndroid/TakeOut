@@ -12,14 +12,14 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 
 
-class RecycleViewDivider
 /**
  * 默认分割线：高度为2px，颜色为灰色
  *
  * @param context
  * @param orientation 列表方向
  */
-    (
+
+class RecycleViewDivider(
     context: Context, private val mOrientation: Int//列表的方向：LinearLayoutManager.VERTICAL或LinearLayoutManager.HORIZONTAL
 ) : RecyclerView.ItemDecoration() {
 

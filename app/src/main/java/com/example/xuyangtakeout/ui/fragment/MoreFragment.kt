@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.example.xuyangtakeout.R
 
-class MoreFragment:Fragment(){
+class MoreFragment : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = View.inflate(activity, R.layout.fragment_, null)
         (view as TextView).setText("更多")
-        return  view
+        return view
     }
 
 }

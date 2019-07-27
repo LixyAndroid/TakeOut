@@ -17,12 +17,12 @@ import rx.schedulers.Schedulers
  * Created by Mloong
  * on 2019/5/19 19:50.
  */
-class OrderFragmentPresenter(val orderFragment: OrderFragment) :NetPresenter(){
+class OrderFragmentPresenter(val orderFragment: OrderFragment) : NetPresenter() {
 
 
-    fun getOrderList(userId:String){
+    fun getOrderList(userId: String) {
         val observable: Observable<ResponseInfo> = takeoutService.getOrderListByRxjava(userId)
-  //      orderCall.enqueue(callback)
+        //      orderCall.enqueue(callback)
 //        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 //            .subscribe(object :Observer<ResponseInfo>{
 //                override fun onCompleted() {
@@ -50,9 +50,9 @@ class OrderFragmentPresenter(val orderFragment: OrderFragment) :NetPresenter(){
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 parserJson(it.data)
-            },{
+            }, {
                 Log.e("rxjava", it.localizedMessage)
-            },{
+            }, {
                 Log.e("rxjava", "onComplete")
             })
 
@@ -64,15 +64,13 @@ class OrderFragmentPresenter(val orderFragment: OrderFragment) :NetPresenter(){
 
         //此处解析，list<Order>
 
-       val orderList:List<Order> = Gson().fromJson(json, object : TypeToken<List<Order>>() {}.type)
+        val orderList: List<Order> = Gson().fromJson(json, object : TypeToken<List<Order>>() {}.type)
 
         if (orderList.isNotEmpty()) {
             orderFragment.onOrderSuccess(orderList)
         } else {
             orderFragment.onOrderFailed()
         }
-
-
 
 
     }

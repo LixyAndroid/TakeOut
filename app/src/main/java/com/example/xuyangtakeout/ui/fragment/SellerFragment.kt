@@ -14,7 +14,7 @@ import android.widget.TextView
  * Created by Mloong
  * on 2019/5/20 20:45.
  */
-class SellerFragment : Fragment(){
+class SellerFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val sellerView = TextView(activity)

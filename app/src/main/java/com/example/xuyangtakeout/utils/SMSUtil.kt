@@ -10,13 +10,11 @@ import android.widget.Toast
 import java.util.ArrayList
 
 /**
- * Created by itheima.
+ * 判断手机号码是否合理
+ *
  */
 object SMSUtil {
-    /**
-     * 判断手机号码是否合理
-     * y
-     */
+
     fun judgePhoneNums(activity: Activity, phoneNums: String): Boolean {
         if (isMatchLength(phoneNums, 11) && isMobileNO(phoneNums)) {
             return true

@@ -17,25 +17,24 @@ import kotlinx.android.synthetic.main.fragment_user.*
 import org.jetbrains.anko.find
 import org.w3c.dom.Text
 
-class UserFragment:Fragment(){
+class UserFragment : Fragment() {
     lateinit var ll_userinfo: LinearLayout
-    lateinit var username:TextView
-    lateinit var phone:TextView
-    lateinit var ivLogin:ImageView
+    lateinit var username: TextView
+    lateinit var phone: TextView
+    lateinit var ivLogin: ImageView
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val userview = View.inflate(activity, R.layout.fragment_user, null)
         ll_userinfo = userview.find(R.id.ll_userinfo)
         username = userview.find<TextView>(R.id.username)
         phone = userview.find<TextView>(R.id.phone)
-         ivLogin = userview.find<ImageView>(R.id.login)
+        ivLogin = userview.find<ImageView>(R.id.login)
 
         ivLogin.setOnClickListener {
             val intent = Intent(activity, LoginActivity::class.java)
             activity.startActivity(intent)
         }
-        return  userview
+        return userview
     }
-
 
 
     @SuppressLint("SetTextI18n")

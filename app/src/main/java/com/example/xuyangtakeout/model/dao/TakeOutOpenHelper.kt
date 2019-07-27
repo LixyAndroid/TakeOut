@@ -19,7 +19,7 @@ import com.j256.ormlite.table.TableUtils
  *  1.3         2       地址管理
  */
 
-class TakeOutOpenHelper(val context: Context):OrmLiteSqliteOpenHelper(context, "takeout_kotlin.db", null, 2){
+class TakeOutOpenHelper(val context: Context) : OrmLiteSqliteOpenHelper(context, "takeout_kotlin.db", null, 2) {
     override fun onCreate(db: SQLiteDatabase?, connectionSource: ConnectionSource?) {
         //创建user表
         TableUtils.createTable(connectionSource, User::class.java)
@@ -28,11 +28,10 @@ class TakeOutOpenHelper(val context: Context):OrmLiteSqliteOpenHelper(context, "
         TableUtils.createTable(connectionSource, RecepitAddressBean::class.java)
 
 
-
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, connectionSource: ConnectionSource?, oldversion: Int, newversion: Int) {
-            //升级app的用户会执行此方法
+        //升级app的用户会执行此方法
         TableUtils.createTable(connectionSource, RecepitAddressBean::class.java)
     }
 

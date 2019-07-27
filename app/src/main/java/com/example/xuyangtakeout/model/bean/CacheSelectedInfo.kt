@@ -11,7 +11,7 @@ import java.lang.reflect.Type
 /*
   点餐缓存
  */
- data class CacheSelectedInfo(var sellerId:Int,var TypeId:Int,var goodsId:Int,var count:Int){
+data class CacheSelectedInfo(var sellerId: Int, var TypeId: Int, var goodsId: Int, var count: Int) {
 //    val sellerId = 0  //店
 //    val userId = 38  // 用户
 //

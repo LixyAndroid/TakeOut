@@ -22,9 +22,8 @@ import kotlinx.android.synthetic.main.activity_map_location.*
 import java.util.*
 
 
-class MapLocationActivity: CheckPermissionsActivity(), AMapLocationListener, LocationSource,
+class MapLocationActivity : CheckPermissionsActivity(), AMapLocationListener, LocationSource,
     PoiSearch.OnPoiSearchListener {
-
 
 
     override fun onPoiItemSearched(poiItem: PoiItem?, rcode: Int) {
@@ -33,8 +32,8 @@ class MapLocationActivity: CheckPermissionsActivity(), AMapLocationListener, Loc
     }
 
     override fun onPoiSearched(poiResult: PoiResult?, rcode: Int) {
-        if(rcode == 1000){
-            if(poiResult!=null) {
+        if (rcode == 1000) {
+            if (poiResult != null) {
                 val poiItems: ArrayList<PoiItem> = poiResult.pois!!
                 adapter.setPoiItemList(poiItems)
                 toast("一共有${poiItems.size}个兴趣点")
@@ -123,7 +122,6 @@ class MapLocationActivity: CheckPermissionsActivity(), AMapLocationListener, Loc
 //                aMapLocation!!.getAdCode()//地区编码
 
 
-
                 // 如果不设置标志位，此时再拖动地图时，它会不断将地图移动到当前的位置
 
                 if (isFirstLoc) {
@@ -166,7 +164,11 @@ class MapLocationActivity: CheckPermissionsActivity(), AMapLocationListener, Loc
     }
 
     private fun doSearchQuery(aMapLocation: AMapLocation) {
-       val query = PoiSearch.Query("", "190104|010100|020000|050000|050200|050300|060000|070700|080600|100100|110000|120000|141200|150500",aMapLocation.city)
+        val query = PoiSearch.Query(
+            "",
+            "190104|010100|020000|050000|050200|050300|060000|070700|080600|100100|110000|120000|141200|150500",
+            aMapLocation.city
+        )
         //keyWord表示搜索字符串，
         //第二个参数表示POI搜索类型，二者选填其一，选用POI搜索类型时建议填写类型代码，码表可以参考下方（而非文字）
         //cityCode表示POI搜索区域，可以是城市编码也可以是城市名称，也可以传空字符串，空字符串代表全国在全国范围内进行搜索
@@ -174,7 +176,8 @@ class MapLocationActivity: CheckPermissionsActivity(), AMapLocationListener, Loc
         query.setPageNum(1);//设置查询页码
         val poiSearch = PoiSearch(this, query)
         //搜索范围
-        poiSearch.bound = PoiSearch.SearchBound(LatLonPoint(aMapLocation.getLatitude(),aMapLocation.getLongitude()), 5000)
+        poiSearch.bound =
+            PoiSearch.SearchBound(LatLonPoint(aMapLocation.getLatitude(), aMapLocation.getLongitude()), 5000)
         poiSearch.setOnPoiSearchListener(this)
         poiSearch.searchPOIAsyn()
     }
@@ -210,8 +213,6 @@ class MapLocationActivity: CheckPermissionsActivity(), AMapLocationListener, Loc
         mLocationClient!!.onDestroy()//销毁定位客户端。
 
     }
-
-
 
 
 }

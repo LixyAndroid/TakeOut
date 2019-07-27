@@ -21,9 +21,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //判断设备是否有虚拟按键，如果有增加paddingBottom = 50dp
-        if (checkDeviceHasNavigationBar(this)){
+        if (checkDeviceHasNavigationBar(this)) {
             // val x = getNavigationBarHeight(this)
-            ll_main_activity.setPadding(0,0,0,50.dip2px())
+            ll_main_activity.setPadding(0, 0, 0, 50.dip2px())
         }
 
         initBottomBar()
@@ -41,16 +41,12 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-
-
     val fragments: List<Fragment> = listOf<Fragment>(HomeFragment(), OrderFragment(), UserFragment(), MoreFragment())
 
 
     private fun initBottomBar() {
         for (i in 0 until main_bottom_bar.childCount) {
-            main_bottom_bar.getChildAt(i).setOnClickListener {
-                    view ->
+            main_bottom_bar.getChildAt(i).setOnClickListener { view ->
                 changeIndex(i)
             }
         }
@@ -69,7 +65,6 @@ class MainActivity : AppCompatActivity() {
         }
         fragmentManager.beginTransaction().replace(R.id.main_content, fragments[index]).commit()
     }
-
 
 
     private fun setEnable(child: View, isEnable: Boolean) {

@@ -20,19 +20,22 @@ import com.example.xuyangtakeout.utils.TakeoutApp
  * on 2019/5/22 15:06
  */
 
-class CartRvAdapter(val context: Context)  :RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class CartRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    val goodsFragment :GoodsFragment
+    val goodsFragment: GoodsFragment
+
     init {
-        goodsFragment= (context as BusinessActivity).fragments.get(0) as GoodsFragment
+        goodsFragment = (context as BusinessActivity).fragments.get(0) as GoodsFragment
     }
-    var cartList:ArrayList<GoodsInfo> = arrayListOf()
 
-    fun setCart(cartList: ArrayList<GoodsInfo>){
+    var cartList: ArrayList<GoodsInfo> = arrayListOf()
+
+    fun setCart(cartList: ArrayList<GoodsInfo>) {
         this.cartList = cartList
         notifyDataSetChanged()
 
     }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         (holder as CartItemHolder).binData(cartList.get(position))
@@ -40,25 +43,25 @@ class CartRvAdapter(val context: Context)  :RecyclerView.Adapter<RecyclerView.Vi
     }
 
     override fun getItemCount(): Int {
-       return  cartList.size
+        return cartList.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-        val itemView = LayoutInflater.from(context).inflate(R.layout.item_cart,parent,false)
+        val itemView = LayoutInflater.from(context).inflate(R.layout.item_cart, parent, false)
         return CartItemHolder(itemView)
     }
 
-    inner class  CartItemHolder(itemView: View):RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    inner class CartItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         override fun onClick(v: View?) {
-            var  isAdd =false
-            when(v?.id){
-                R.id.ib_add ->{
+            var isAdd = false
+            when (v?.id) {
+                R.id.ib_add -> {
 
                     isAdd = true
                     doAddOperation()
                 }
-                R.id.ib_minus ->doMinusOperation()
+                R.id.ib_minus -> doMinusOperation()
             }
 
             processRedDotCount(isAdd) //红点处理
@@ -78,10 +81,10 @@ class CartRvAdapter(val context: Context)  :RecyclerView.Adapter<RecyclerView.Vi
 
             val goodsTypeInfo = goodsFragment.goodsFragmentPresenter.goodsTypeList.get(typePosition)
             var redDotCount = goodsTypeInfo.redDOTCount
-            if (isAdd){
+            if (isAdd) {
                 redDotCount++
 
-            }else{
+            } else {
                 redDotCount--
             }
             goodsTypeInfo.redDOTCount = redDotCount
@@ -91,23 +94,24 @@ class CartRvAdapter(val context: Context)  :RecyclerView.Adapter<RecyclerView.Vi
 
 
         }
+
         private fun doMinusOperation() {
 
             //数据层count
-            var  count = goodsInfo.count
+            var count = goodsInfo.count
 
-            if (count ==1){
+            if (count == 1) {
                 //数量为1再减需要移除
                 cartList.remove(goodsInfo)
 
                 //最后一个类别移除后， 关闭购物车
-                if(cartList.size ==0){
+                if (cartList.size == 0) {
                     (context as BusinessActivity).showOrHideCart()
                 }
 
                 //删除缓存
                 TakeoutApp.sInstance.deleteCacheSelectedInfo(goodsInfo.id)
-            } else{
+            } else {
 
                 //更新缓存
                 TakeoutApp.sInstance.updateCacheSelectedInfo(goodsInfo.id, Constants.MINUS)
@@ -118,8 +122,7 @@ class CartRvAdapter(val context: Context)  :RecyclerView.Adapter<RecyclerView.Vi
             count--
 
 
-            goodsInfo.count =count
-
+            goodsInfo.count = count
 
 
             //购物车内部数量与价格
@@ -136,12 +139,12 @@ class CartRvAdapter(val context: Context)  :RecyclerView.Adapter<RecyclerView.Vi
 
         private fun doAddOperation() {
             //数据层count
-            var  count = goodsInfo.count
+            var count = goodsInfo.count
             //更新缓存
             TakeoutApp.sInstance.updateCacheSelectedInfo(goodsInfo.id, Constants.ADD)
 
             count++
-            goodsInfo.count =count
+            goodsInfo.count = count
 
             //购物车内部数量与价格
 
@@ -167,19 +170,19 @@ class CartRvAdapter(val context: Context)  :RecyclerView.Adapter<RecyclerView.Vi
 
         }
 
-        val tvName:TextView
-        val tvAllPrice:TextView
-        val tvCount:TextView
-        val ibAdd :ImageButton
-        val ibMinus :ImageButton
+        val tvName: TextView
+        val tvAllPrice: TextView
+        val tvCount: TextView
+        val ibAdd: ImageButton
+        val ibMinus: ImageButton
         lateinit var goodsInfo: GoodsInfo
 
         init {
 
-            tvName = itemView.findViewById(R.id.tv_name)  as TextView
+            tvName = itemView.findViewById(R.id.tv_name) as TextView
 
-            tvAllPrice = itemView.findViewById(R.id.tv_type_all_price)  as TextView
-            tvCount = itemView.findViewById(R.id.tv_count)  as TextView
+            tvAllPrice = itemView.findViewById(R.id.tv_type_all_price) as TextView
+            tvCount = itemView.findViewById(R.id.tv_count) as TextView
 
             ibAdd = itemView.findViewById(R.id.ib_add) as ImageButton
             ibMinus = itemView.findViewById(R.id.ib_minus) as ImageButton
@@ -188,10 +191,6 @@ class CartRvAdapter(val context: Context)  :RecyclerView.Adapter<RecyclerView.Vi
         }
 
     }
-
-
-
-
 
 
 }

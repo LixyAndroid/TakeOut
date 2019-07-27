@@ -22,44 +22,39 @@ import com.amap.api.maps2d.model.PolylineOptions
 import com.amap.api.maps2d.AMapUtils
 
 
-
-
-
-
-
 /**
  * Created by Mloong
  * on 2019/5/27 19:25
  */
-class OrderDetailActivity : AppCompatActivity(),Observer {
+class OrderDetailActivity : AppCompatActivity(), Observer {
 
     override fun update(o: Observable?, data: Any?) {
 
 
         //更新UI
 
-        val jsonObj : JSONObject = JSONObject( data as String)
+        val jsonObj: JSONObject = JSONObject(data as String)
         val pushOrderId = jsonObj.getString("orderId")
-        val  pushType = jsonObj.getString("type")
+        val pushType = jsonObj.getString("type")
 
 
 
-            if (orderId.equals(pushOrderId)){
+        if (orderId.equals(pushOrderId)) {
 
-                type = pushType
+            type = pushType
 
-            }
+        }
 
 
-        val index =  getIndex(type)
+        val index = getIndex(type)
         (ll_order_detail_type_point_container.getChildAt(index) as ImageView).setImageResource(R.drawable.order_time_node_disabled)
         (ll_order_detail_type_container.getChildAt(index) as TextView).setTextColor(Color.BLUE)
 
-        when(type){
-            OrderObservable.ORDERTYPE_RECEIVEORDER->{
+        when (type) {
+            OrderObservable.ORDERTYPE_RECEIVEORDER -> {
                 //显示地图
                 mMapView.visibility = View.VISIBLE
-                 // 南亭柠檬茶23.0366070000,113.3875080000
+                // 南亭柠檬茶23.0366070000,113.3875080000
                 aMap!!.moveCamera(CameraUpdateFactory.zoomTo(17f))
                 //将地图移动到定位点
                 aMap!!.moveCamera(
@@ -73,30 +68,51 @@ class OrderDetailActivity : AppCompatActivity(),Observer {
                 //标志买卖家  23.0366220000,113.3874620000   23.0359020000,113.3985620000
 
 
-                val sellerMarker = aMap.addMarker(MarkerOptions().position(LatLng(23.0366220000,113.3874620000)).icon(BitmapDescriptorFactory.fromResource(R.drawable.order_seller_icon)).title("柠檬茶").snippet("我是渺小的卖家"))
+                val sellerMarker = aMap.addMarker(
+                    MarkerOptions().position(
+                        LatLng(
+                            23.0366220000,
+                            113.3874620000
+                        )
+                    ).icon(BitmapDescriptorFactory.fromResource(R.drawable.order_seller_icon)).title("柠檬茶").snippet("我是渺小的卖家")
+                )
                 aMap!!.moveCamera(CameraUpdateFactory.zoomTo(17f))
                 //将地图移动到定位点
                 aMap!!.moveCamera(
                     CameraUpdateFactory.changeLatLng(
                         LatLng(
-                            23.0366220000,113.3874620000
+                            23.0366220000, 113.3874620000
                         )
                     )
                 )
                 var imageView = ImageView(this)
                 imageView.setImageResource(R.drawable.order_buyer_icon)
 
-                val buyerMarker = aMap.addMarker(MarkerOptions().position(LatLng(23.0359020000,113.3985620000)).icon(BitmapDescriptorFactory.fromView(imageView)).title("工学二号馆").snippet("一个霸气的卖家"))
+                val buyerMarker = aMap.addMarker(
+                    MarkerOptions().position(
+                        LatLng(
+                            23.0359020000,
+                            113.3985620000
+                        )
+                    ).icon(BitmapDescriptorFactory.fromView(imageView)).title("工学二号馆").snippet("一个霸气的卖家")
+                )
 
 
             }
-            OrderObservable.ORDERTYPE_DISTRIBUTION-> {
+            OrderObservable.ORDERTYPE_DISTRIBUTION -> {
 
-                points.add(LatLng(23.0358320000,113.3881110000))
+                points.add(LatLng(23.0358320000, 113.3881110000))
                 //骑士登场
                 var imageView = ImageView(this)
                 imageView.setImageResource(R.drawable.order_rider_icon)
-                riderMarker = aMap.addMarker(MarkerOptions().position(LatLng(23.0358320000,113.3881110000)).icon(BitmapDescriptorFactory.fromView(imageView)).title("我是骑手").snippet("我是骑手"))
+                riderMarker = aMap.addMarker(
+                    MarkerOptions().position(
+                        LatLng(
+                            23.0358320000,
+                            113.3881110000
+                        )
+                    ).icon(BitmapDescriptorFactory.fromView(imageView)).title("我是骑手").snippet("我是骑手")
+                )
 
                 riderMarker.showInfoWindow()
 
@@ -105,46 +121,52 @@ class OrderDetailActivity : AppCompatActivity(),Observer {
                 aMap!!.moveCamera(
                     CameraUpdateFactory.changeLatLng(
                         LatLng(
-                            23.0358320000,113.3881110000
+                            23.0358320000, 113.3881110000
                         )
                     )
                 )
             }
 
-            OrderObservable.ORDERTYPE_DISTRIBUTION_RIDER_GIVE_MEAL->{
+            OrderObservable.ORDERTYPE_DISTRIBUTION_RIDER_GIVE_MEAL -> {
 
             }
-            OrderObservable.ORDERTYPE_DISTRIBUTION_RIDER_TAKE_MEAL->{
+            OrderObservable.ORDERTYPE_DISTRIBUTION_RIDER_TAKE_MEAL -> {
 
-                if (jsonObj.has("lat")){
+                if (jsonObj.has("lat")) {
                     val lat = jsonObj.getString("lat")
                     val lng = jsonObj.getString("lng")
 
                     //移动骑手      23.0412540000,113.3771810000
                     //更新骑手位置就是用新位置重新标记骑手
                     riderMarker.hideInfoWindow()
-                    riderMarker.position = LatLng(lat.toDouble(),lng.toDouble())
+                    riderMarker.position = LatLng(lat.toDouble(), lng.toDouble())
 
                     aMap!!.moveCamera(CameraUpdateFactory.zoomTo(17f))
                     //将地图移动到定位点
                     aMap!!.moveCamera(
                         CameraUpdateFactory.changeLatLng(
-                            LatLng(lat.toDouble(),lng.toDouble())
+                            LatLng(lat.toDouble(), lng.toDouble())
                         )
                     )
 
                     //测距功能
-                    val distance = AMapUtils.calculateLineDistance(LatLng(lat.toDouble(),lng.toDouble()),LatLng(23.0359020000,113.3985620000))
-                    riderMarker.title = "距离您还有"+Math.abs(distance)+"米"
+                    val distance = AMapUtils.calculateLineDistance(
+                        LatLng(lat.toDouble(), lng.toDouble()),
+                        LatLng(23.0359020000, 113.3985620000)
+                    )
+                    riderMarker.title = "距离您还有" + Math.abs(distance) + "米"
                     riderMarker.showInfoWindow()
 
                     //绘制轨迹
-                    points.add(LatLng(lat.toDouble(),lng.toDouble()))
+                    points.add(LatLng(lat.toDouble(), lng.toDouble()))
 
-                  val polyline = aMap.addPolyline(PolylineOptions().add(points.get(points.size-1),points.get(points.size-2)).width(10f).color(Color.RED))
+                    val polyline = aMap.addPolyline(
+                        PolylineOptions().add(
+                            points.get(points.size - 1),
+                            points.get(points.size - 2)
+                        ).width(10f).color(Color.RED)
+                    )
                 }
-
-
 
 
             }
@@ -154,9 +176,9 @@ class OrderDetailActivity : AppCompatActivity(),Observer {
     }
 
 
-    var points :ArrayList<LatLng> = ArrayList()
+    var points: ArrayList<LatLng> = ArrayList()
     lateinit var riderMarker: Marker
-    lateinit var aMap:AMap
+    lateinit var aMap: AMap
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_detail)
@@ -166,8 +188,8 @@ class OrderDetailActivity : AppCompatActivity(),Observer {
         aMap = mMapView.getMap()
 
 
-
     }
+
     override fun onDestroy() {
         super.onDestroy()
         //在activity执行onDestroy时执行mMapView.onDestroy()，销毁地图
@@ -192,13 +214,13 @@ class OrderDetailActivity : AppCompatActivity(),Observer {
         mMapView.onSaveInstanceState(outState)
     }
 
-    lateinit var orderId:String
+    lateinit var orderId: String
     lateinit var type: String
     private fun processIntent() {
-        if(intent.hasExtra("orderId")){
-            orderId  = intent.getStringExtra("orderId")
-            type  = intent.getStringExtra("type")
-            val index =  getIndex(type)
+        if (intent.hasExtra("orderId")) {
+            orderId = intent.getStringExtra("orderId")
+            type = intent.getStringExtra("type")
+            val index = getIndex(type)
             (ll_order_detail_type_point_container.getChildAt(index) as ImageView).setImageResource(R.drawable.order_time_node_disabled)
 
             (ll_order_detail_type_container.getChildAt(index) as TextView).setTextColor(Color.BLUE)
