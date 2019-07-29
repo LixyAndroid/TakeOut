@@ -6,4 +6,3 @@
  主页  http://203.195.245.169:8080/TakeOut/home
  登录 http://203.195.245.169:8080/TakeOut/login
  订单 http://203.195.245.169:8080/TakeOut/order
- 商品 http://203.195.245.169:8080/TakeOut/business
