@@ -1,24 +1,27 @@
 package com.example.xuyangtakeout.ui.activity
 
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.widget.Toast
 import com.amap.api.location.AMapLocation
 import com.amap.api.location.AMapLocationClient
+import com.amap.api.location.AMapLocationClientOption
 import com.amap.api.location.AMapLocationListener
-import com.example.xuyangtakeout.R
+import com.amap.api.maps2d.AMap
+import com.amap.api.maps2d.CameraUpdateFactory
+import com.amap.api.maps2d.LocationSource
+import com.amap.api.maps2d.MapView
 import com.amap.api.maps2d.model.LatLng
-import org.jetbrains.anko.toast
 import com.amap.api.maps2d.model.MyLocationStyle
 import com.amap.api.services.core.LatLonPoint
-import com.amap.api.location.AMapLocationClientOption
-import android.support.v7.widget.LinearLayoutManager
-import com.amap.api.maps2d.*
 import com.amap.api.services.core.PoiItem
 import com.amap.api.services.poisearch.PoiResult
 import com.amap.api.services.poisearch.PoiSearch
+import com.example.xuyangtakeout.R
 import com.example.xuyangtakeout.ui.adapter.AroundRvAdapter
 import kotlinx.android.synthetic.main.activity_map_location.*
+import org.jetbrains.anko.toast
 import java.util.*
 
 
@@ -163,17 +166,17 @@ class MapLocationActivity : CheckPermissionsActivity(), AMapLocationListener, Lo
 
     }
 
+    //190104|010100|020000|050000|050200|050300|060000|070700|080600|100100|110000|120000|141200|150500
     private fun doSearchQuery(aMapLocation: AMapLocation) {
         val query = PoiSearch.Query(
-            "",
-            "190104|010100|020000|050000|050200|050300|060000|070700|080600|100100|110000|120000|141200|150500",
+            "", "190104|010100|020000|050000|050200|050300|060000|070700|080600|100100|110000|120000|141200|150500",
             aMapLocation.city
         )
         //keyWord表示搜索字符串，
         //第二个参数表示POI搜索类型，二者选填其一，选用POI搜索类型时建议填写类型代码，码表可以参考下方（而非文字）
         //cityCode表示POI搜索区域，可以是城市编码也可以是城市名称，也可以传空字符串，空字符串代表全国在全国范围内进行搜索
-        query.setPageSize(30);// 设置每页最多返回多少条poiitem
-        query.setPageNum(1);//设置查询页码
+        query.setPageSize(30) // 设置每页最多返回多少条poiitem
+        query.setPageNum(1) //设置查询页码
         val poiSearch = PoiSearch(this, query)
         //搜索范围
         poiSearch.bound =
@@ -216,6 +219,9 @@ class MapLocationActivity : CheckPermissionsActivity(), AMapLocationListener, Lo
 
 
 }
+
+
+
 
 
 

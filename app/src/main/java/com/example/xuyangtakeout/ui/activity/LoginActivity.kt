@@ -1,16 +1,15 @@
 package com.example.xuyangtakeout.ui.activity
 
+
 import android.annotation.SuppressLint
 import android.os.*
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
-import kotlinx.android.synthetic.main.activity_login.*
-
-
 import cn.smssdk.EventHandler
 import cn.smssdk.SMSSDK
 import com.example.xuyangtakeout.presenter.LoginActivityPresenter
 import com.example.xuyangtakeout.utils.SMSUtil
+import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.toast
 
 

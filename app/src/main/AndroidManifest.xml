@@ -78,7 +78,8 @@
             android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
 
 
-        <activity android:name=".ui.activity.StartActivity">
+        <activity android:name=".ui.activity.SplashActivity"
+                  android:theme="@style/AppTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -268,12 +269,14 @@
 
         <meta-data
                 android:name="com.amap.api.v2.apikey"
-                android:value="961a36ed4be7bbb410ce04de31994f6a"/>
-
-        <activity android:name=".ui.activity.MapLocationActivity"/>
+                android:value="99b4b3a42fa2a071b70aae3607ff0b29"/>
 
         <service android:name="com.amap.api.location.APSService">
         </service>
+
+        <activity android:name=".ui.activity.MapLocationActivity"/>
+
+
 
         <activity android:name=".ui.activity.OrderDetailActivity"/>
         <activity android:name=".ui.activity.OnlinePaymentActivity"/>

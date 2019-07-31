@@ -41,8 +41,6 @@ class HomeFragment : Fragment() {
         //TODO:解耦View层和P层，通过dagger2（基于注解的依赖注入）生成HomeFragmentPresenter
         DaggerHomeFragmentComponent.builder().homeFragmentModule(HomeFragmentModule(this)).build().inject(this)
 
-
-
         distance = 75.dp2x()
         return view
     }
@@ -84,7 +82,7 @@ class HomeFragment : Fragment() {
         allList.addAll(otherSellers)
         homeRvAdapter.setData(allList)
 
-        toast("获取首页数据成功")
+        //  toast("获取首页数据成功")
 
 
         //有数据可以滚动才可以监听滚动事件

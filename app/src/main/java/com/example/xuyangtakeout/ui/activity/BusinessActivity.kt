@@ -22,7 +22,8 @@ import android.view.LayoutInflater
 import android.widget.TextView
 import com.example.xuyangtakeout.model.bean.Seller
 import com.example.xuyangtakeout.ui.adapter.CartRvAdapter
-import com.example.xuyangtakeout.utils.CommonUtil.Companion.checkDeviceHasNavigationBar
+import com.example.xuyangtakeout.utils.BottomNavigation
+
 import com.example.xuyangtakeout.utils.TakeoutApp
 
 
@@ -157,10 +158,15 @@ class BusinessActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_business)
         processIntent()
 
-        //判断设备是否有虚拟按键，如果有增加paddingBottom = 50dp
-        if (checkDeviceHasNavigationBar(this)) {
-            // val x = getNavigationBarHeight(this)
-            fl_Container.setPadding(0, 0, 0, 48.dip2px())
+//        //判断设备是否有虚拟按键，如果有增加paddingBottom = 50dp
+//        if (checkDeviceHasNavigationBar(this)) {
+//            // val x = getNavigationBarHeight(this)
+//            fl_Container.setPadding(0, 0, 0, 48.dip2px())
+//        }
+
+
+        if (BottomNavigation.checkDeviceHasNavigationBar(this)) {
+            BottomNavigation.assistActivity(findViewById(android.R.id.content));
         }
 
         vp.adapter = BusinessFragmentAdapter()

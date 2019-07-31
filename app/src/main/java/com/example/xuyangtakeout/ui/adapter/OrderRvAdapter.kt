@@ -70,7 +70,7 @@ class OrderRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.V
     }
 
 
-    private var orderList: List<Order> = ArrayList<Order>()
+    private var orderList: List<Order> = ArrayList<Order>() as List<Order>
 
 
     fun setOrderData(orders: List<Order>) {
@@ -85,7 +85,7 @@ class OrderRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.V
         //TODO:没有填充满，原因是recycleview的孩子，测量模式是UNSPECIFY
         //通过返回值已经addview,如果attachToRoot使用true会再一次addView()，就会报错
         val itemView =
-            LayoutInflater.from(context).inflate(com.example.xuyangtakeout.R.layout.item_order_item, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.item_order_item, parent, false)
         return OrderItemHolder(itemView)
     }
 

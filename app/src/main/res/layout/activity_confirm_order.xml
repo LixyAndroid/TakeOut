@@ -67,7 +67,7 @@
                                android:id="@+id/tv_name"
                                android:layout_width="wrap_content"
                                android:layout_height="match_parent"
-                               android:textSize="20sp"
+                               android:textSize="16sp"
                                android:textColor="#000"
                                android:textStyle="bold"
                                android:text="李旭阳"/>

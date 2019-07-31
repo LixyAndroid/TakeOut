@@ -5,13 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.TypedValue
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import com.example.xuyangtakeout.BuildConfig
 import com.example.xuyangtakeout.R
-import com.example.xuyangtakeout.utils.CommonUtil
-import kotlinx.android.synthetic.main.activity_online_payment.*
+import com.example.xuyangtakeout.utils.BottomNavigation
 import org.jetbrains.anko.find
 
 /**
@@ -25,9 +22,13 @@ class OnlinePaymentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_online_payment)
         processIntent()
-        if (CommonUtil.checkDeviceHasNavigationBar(this)) {
-            activity_online_pay.setPadding(0, 0, 0, 48.dp2px())
+
+        //底部导航适配,HuaWeiP20
+
+        if (BottomNavigation.checkDeviceHasNavigationBar(this)) {
+            BottomNavigation.assistActivity(findViewById(android.R.id.content));
         }
+
 
         confirmPay = find(R.id.bt_confirm_pay)
         confirmPay.setOnClickListener {
@@ -38,13 +39,6 @@ class OnlinePaymentActivity : AppCompatActivity() {
 
     }
 
-    fun Int.dp2px(): Int {
-        return TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP,
-            toFloat(), resources.displayMetrics
-        ).toInt()
-
-    }
 
     lateinit var mTvCountPrice: TextView
     @SuppressLint("SetTextI18n")

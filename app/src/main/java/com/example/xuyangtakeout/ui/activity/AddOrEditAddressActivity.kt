@@ -11,12 +11,11 @@ import android.text.TextUtils
 import android.text.TextWatcher
 import android.view.View
 import com.example.xuyangtakeout.R
-import com.example.xuyangtakeout.utils.CommonUtil
 import kotlinx.android.synthetic.main.activity_add_edit_receipt_address.*
 import android.widget.Toast
 import com.example.xuyangtakeout.model.bean.RecepitAddressBean
 import com.example.xuyangtakeout.model.dao.AddressDao
-import com.j256.ormlite.dao.Dao
+import com.example.xuyangtakeout.utils.BottomNavigation
 import org.jetbrains.anko.toast
 
 
@@ -148,11 +147,14 @@ class AddOrEditAddressActivity : AppCompatActivity(), View.OnClickListener {
         processIntent()
 
         addressDao = AddressDao(this)
-        //判断设备是否有虚拟按键，如果有增加paddingBottom = 50dp
-        if (CommonUtil.checkDeviceHasNavigationBar(this)) {
-            // val x = getNavigationBarHeight(this)
-            activity_add_address.setPadding(0, 0, 0, 48.dip2px())
+
+
+
+        //底部导航适配,HuaWeiP20
+        if (BottomNavigation.checkDeviceHasNavigationBar(this)) {
+            BottomNavigation.assistActivity(findViewById(android.R.id.content))
         }
+
 
         btn_location_address.setOnClickListener(this)
 

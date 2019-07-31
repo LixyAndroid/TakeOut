@@ -9,7 +9,7 @@ import com.example.xuyangtakeout.model.bean.RecepitAddressBean
 import com.example.xuyangtakeout.model.dao.AddressDao
 import com.example.xuyangtakeout.ui.adapter.AddressRvAdapter
 import com.example.xuyangtakeout.ui.views.RecycleViewDivider
-import com.example.xuyangtakeout.utils.CommonUtil
+import com.example.xuyangtakeout.utils.BottomNavigation
 import kotlinx.android.synthetic.main.activity_address_list.*
 
 
@@ -33,10 +33,11 @@ class RecepitAddressActivity() : AppCompatActivity() {
         rv_receipt_address.adapter = adapter
         // rv_receipt_address.adapter = AddressRvAdapter(this)
 
-        //判断设备是否有虚拟按键，如果有增加paddingBottom = 50dp
-        if (CommonUtil.checkDeviceHasNavigationBar(this)) {
-            // val x = getNavigationBarHeight(this)
-            activity_address_list.setPadding(0, 0, 0, 48.dip2px())
+
+        //底部导航适配,HuaWeiP20
+
+        if (BottomNavigation.checkDeviceHasNavigationBar(this)) {
+            BottomNavigation.assistActivity(findViewById(android.R.id.content));
         }
 
         tv_add_address.setOnClickListener {
@@ -61,10 +62,6 @@ class RecepitAddressActivity() : AppCompatActivity() {
     }
 
 
-    fun Int.dip2px(): Int {
-        val scale = resources.displayMetrics.density
-        return (toFloat() * scale + 0.5f).toInt()
-    }
 
 
 }

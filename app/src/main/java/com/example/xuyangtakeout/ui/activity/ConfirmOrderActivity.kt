@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.example.xuyangtakeout.R
 import com.example.xuyangtakeout.model.bean.RecepitAddressBean
-import com.example.xuyangtakeout.utils.CommonUtil.Companion.checkDeviceHasNavigationBar
 import kotlinx.android.synthetic.main.activity_confirm_order.*
 import android.widget.TextView
+import com.example.xuyangtakeout.utils.BottomNavigation
 
 import kotlinx.android.synthetic.main.activity_confirm_order.tvSubmit
 
@@ -25,11 +25,12 @@ class ConfirmOrderActivity : AppCompatActivity() {
         processIntent()
 
 
-        //判断设备是否有虚拟按键，如果有增加paddingBottom = 50dp
-        if (checkDeviceHasNavigationBar(this)) {
-            // val x = getNavigationBarHeight(this)
-            activity_confirm_order.setPadding(0, 0, 0, 48.dip2px())
+        //底部导航适配,HuaWeiP20
+
+        if (BottomNavigation.checkDeviceHasNavigationBar(this)) {
+            BottomNavigation.assistActivity(findViewById(android.R.id.content));
         }
+
 
         rl_location.setOnClickListener {
             val intent = Intent(this, RecepitAddressActivity::class.java)

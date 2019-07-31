@@ -1,8 +1,8 @@
 package com.example.xuyangtakeout.ui.activity
 
 import android.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
 import com.example.xuyangtakeout.R
@@ -10,9 +10,8 @@ import com.example.xuyangtakeout.ui.fragment.HomeFragment
 import com.example.xuyangtakeout.ui.fragment.MoreFragment
 import com.example.xuyangtakeout.ui.fragment.OrderFragment
 import com.example.xuyangtakeout.ui.fragment.UserFragment
+import com.example.xuyangtakeout.utils.BottomNavigation
 import kotlinx.android.synthetic.main.activity_main.*
-import android.content.Context
-import com.example.xuyangtakeout.utils.CommonUtil.Companion.checkDeviceHasNavigationBar
 
 
 class MainActivity : AppCompatActivity() {
@@ -20,11 +19,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //判断设备是否有虚拟按键，如果有增加paddingBottom = 50dp
-        if (checkDeviceHasNavigationBar(this)) {
-            // val x = getNavigationBarHeight(this)
-            ll_main_activity.setPadding(0, 0, 0, 50.dip2px())
+
+        //底部导航适配,HuaWeiP20
+
+
+        if (BottomNavigation.checkDeviceHasNavigationBar(this)) {
+            BottomNavigation.assistActivity(findViewById(android.R.id.content));
         }
+
 
         initBottomBar()
         changeIndex(0)
