@@ -11,7 +11,7 @@ import android.view.animation.Animation.AnimationListener
 
 
 /**
- * Created by Mloong
+ * Created by Li Xuyang
  * on 2019/5/28 12:58
  */
 class SplashActivity : AppCompatActivity() {

@@ -8,7 +8,7 @@ import rx.Observable
 
 
 /**
- * Created by Mloong
+ * Created by Li Xuyang
  * on 2019/5/18 21:42.
  */
 interface TakeoutService {

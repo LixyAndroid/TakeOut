@@ -4,7 +4,7 @@ import android.content.Context
 import cn.jpush.android.service.WakedResultReceiver
 
 /**
- * Created by Mloong
+ * Created by Li Xuyang
  * on 2019/5/19 22:43.
  */
 

@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_address_list.*
 
 
 /**
- * Created by Mloong
+ * Created by Li Xuyang
  * on 2019/5/22 21:20
  */
 class RecepitAddressActivity() : AppCompatActivity() {

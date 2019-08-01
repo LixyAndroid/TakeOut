@@ -9,7 +9,7 @@ import java.util.concurrent.CopyOnWriteArrayList
 
 
 /**
- * Created by Mloong
+ * Created by Li Xuyang
  * on 2019/5/19 16:25.
  */
 class TakeoutApp : MobApplication() {

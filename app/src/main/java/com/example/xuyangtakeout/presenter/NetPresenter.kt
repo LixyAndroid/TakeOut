@@ -12,7 +12,7 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 /**
- * Created by Mloong
+ * Created by Li Xuyang
  * on 2019/5/19 17:14.
  */
 
@@ -25,7 +25,7 @@ open abstract class NetPresenter {
             //本地
             //.baseUrl("http://10.23.15.6:8080/TakeOutService/")
             //腾讯云IP
-            .baseUrl("http://203.195.245.169:8080/TakeOut/")
+            .baseUrl("http://203.195.245.169:8080/TakeOutService/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .build()

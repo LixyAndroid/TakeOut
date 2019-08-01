@@ -16,7 +16,7 @@ import com.example.xuyangtakeout.utils.PriceFormater
 import com.example.xuyangtakeout.utils.TakeoutApp
 
 /**
- * Created by Mloong
+ * Created by Li Xuyang
  * on 2019/5/22 15:06
  */
 

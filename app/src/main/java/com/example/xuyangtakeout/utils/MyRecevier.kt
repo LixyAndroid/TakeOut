@@ -10,7 +10,7 @@ import cn.jpush.android.api.JPushInterface
 
 
 /**
- * Created by Mloong
+ * Created by Li Xuyang
  * on 2019/5/19 21:49.
  */
 

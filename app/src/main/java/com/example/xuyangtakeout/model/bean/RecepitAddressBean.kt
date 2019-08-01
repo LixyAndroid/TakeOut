@@ -5,7 +5,7 @@ import com.j256.ormlite.table.DatabaseTable
 import java.io.Serializable
 
 /**
- * Created by Mloong
+ * Created by Li Xuyang
  * on 2019/5/22 22:47
  *
  * 地址表格

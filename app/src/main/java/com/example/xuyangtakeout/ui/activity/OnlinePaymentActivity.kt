@@ -12,7 +12,7 @@ import com.example.xuyangtakeout.utils.BottomNavigation
 import org.jetbrains.anko.find
 
 /**
- * Created by Mloong
+ * Created by Li Xuyang
  * on 2019/5/27 22:38
  */
 class OnlinePaymentActivity : AppCompatActivity() {

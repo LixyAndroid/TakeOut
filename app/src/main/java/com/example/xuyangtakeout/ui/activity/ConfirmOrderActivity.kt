@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_confirm_order.tvSubmit
 
 
 /**
- * Created by Mloong
+ * Created by Li Xuyang
  * on 2019/5/22 20:46
  */
 class ConfirmOrderActivity : AppCompatActivity() {

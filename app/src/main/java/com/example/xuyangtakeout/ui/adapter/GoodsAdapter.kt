@@ -25,7 +25,7 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter
 import com.example.xuyangtakeout.model.bean.GoodsInfo as goodsInfo
 
 /**
- * Created by Mloong
+ * Created by Li Xuyang
  * on 2019/5/20 22:52
  */
 

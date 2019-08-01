@@ -13,7 +13,7 @@ import org.json.JSONObject
 import java.lang.reflect.Type
 
 /**
- * Created by Mloong
+ * Created by Li Xuyang
  * on 2019/5/20 21:32.
  */
 class GoodsFragmentPresenter(val goodsFragment: GoodsFragment) : NetPresenter() {

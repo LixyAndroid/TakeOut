@@ -15,7 +15,7 @@ import org.jetbrains.anko.find
 
 
 /**
- * Created by Mloong
+ * Created by Li Xuyang
  * on 2019/5/20 22:05.
  */
 class GoodsTypeRvAdapter(val context: Context, val goodsFragment: GoodsFragment) :

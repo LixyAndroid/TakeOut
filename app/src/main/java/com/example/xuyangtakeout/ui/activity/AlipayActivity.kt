@@ -7,7 +7,7 @@ import com.example.xuyangtakeout.R
 import org.jetbrains.anko.find
 
 /**
- * Created by Mloong
+ * Created by Li Xuyang
  * on 2019/5/28 20:54
  */
 class AlipayActivity : AppCompatActivity() {

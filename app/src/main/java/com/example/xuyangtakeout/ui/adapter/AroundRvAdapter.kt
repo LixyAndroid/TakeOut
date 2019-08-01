@@ -12,7 +12,7 @@ import com.amap.api.services.core.PoiItem
 import com.example.xuyangtakeout.R
 
 /**
- * Created by Mloong
+ * Created by Li Xuyang
  * on 2019/5/27 18:53
  */
 class AroundRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

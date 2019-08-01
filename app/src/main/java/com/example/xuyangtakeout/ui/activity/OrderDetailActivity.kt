@@ -23,7 +23,7 @@ import com.amap.api.maps2d.AMapUtils
 
 
 /**
- * Created by Mloong
+ * Created by Li Xuyang
  * on 2019/5/27 19:25
  */
 class OrderDetailActivity : AppCompatActivity(), Observer {

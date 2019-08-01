@@ -15,7 +15,7 @@ import com.example.xuyangtakeout.model.bean.RecepitAddressBean
 import com.example.xuyangtakeout.ui.activity.AddOrEditAddressActivity
 
 /**
- * Created by Mloong
+ * Created by Li Xuyang
  * on 2019/5/23 11:03
  */
 class AddressRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

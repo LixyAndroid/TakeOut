@@ -3,7 +3,7 @@ package com.example.xuyangtakeout.model.bean
 import java.lang.reflect.Type
 
 /**
- * Created by Mloong
+ * Created by Li Xuyang
  * on 2019/5/22 17:30
  */
 
