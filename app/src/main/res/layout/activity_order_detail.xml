@@ -117,8 +117,6 @@
             </com.amap.api.maps2d.MapView>
 
 
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -234,7 +232,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@drawable/order_info" />
+                android:src="@mipmap/order_info" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -95,9 +95,6 @@ class GoodsAdapter(val context: Context, val goodsFragment: GoodsFragment) : Bas
 
             }
 
-
-
-
             count--
             //改变数据层
             goodsInfo.count = count

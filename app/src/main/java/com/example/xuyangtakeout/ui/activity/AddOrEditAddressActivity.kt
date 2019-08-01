@@ -10,12 +10,12 @@ import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.view.View
-import com.example.xuyangtakeout.R
-import kotlinx.android.synthetic.main.activity_add_edit_receipt_address.*
 import android.widget.Toast
+import com.example.xuyangtakeout.R
 import com.example.xuyangtakeout.model.bean.RecepitAddressBean
 import com.example.xuyangtakeout.model.dao.AddressDao
 import com.example.xuyangtakeout.utils.BottomNavigation
+import kotlinx.android.synthetic.main.activity_add_edit_receipt_address.*
 import org.jetbrains.anko.toast
 
 
@@ -36,13 +36,10 @@ class AddOrEditAddressActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_ok -> {
                 val isOK = checkReceiptAddressInfo()
                 if (isOK) {
-
                     if (intent.hasExtra("addressBean")) {
                         updateAddress()
 
-
                     } else {
-
                         //新增地址
                         insertAddress()
                     }
@@ -147,8 +144,6 @@ class AddOrEditAddressActivity : AppCompatActivity(), View.OnClickListener {
         processIntent()
 
         addressDao = AddressDao(this)
-
-
 
         //底部导航适配,HuaWeiP20
         if (BottomNavigation.checkDeviceHasNavigationBar(this)) {

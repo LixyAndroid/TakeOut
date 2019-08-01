@@ -46,7 +46,6 @@ class LoginActivityPresenter(val loginActivity: LoginActivity) : NetPresenter() 
                 //       userDao.createOrUpdate(user)
                 //       Log.e("login","创建新用户或者更新老用户信息")
 
-
                 connection = AndroidDatabaseConnection(takeoutOpenHelper.writableDatabase, true)
                 startPoint = connection.setSavePoint("start")
                 connection.isAutoCommit = false //取消自动提交

@@ -1,20 +1,10 @@
 package com.example.xuyangtakeout.presenter
 
-import android.support.constraint.Constraints.TAG
-import android.util.Log
 import com.example.xuyangtakeout.model.bean.Seller
-
-import com.example.xuyangtakeout.model.net.ResponseInfo
-import com.example.xuyangtakeout.model.net.TakeoutService
 import com.example.xuyangtakeout.ui.fragment.HomeFragment
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 
 class HomeFragmentPresenter(val homeFragment: HomeFragment) : NetPresenter() {

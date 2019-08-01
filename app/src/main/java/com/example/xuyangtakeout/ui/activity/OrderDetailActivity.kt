@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.amap.api.maps2d.AMap
+import com.amap.api.maps2d.AMapUtils
 import com.amap.api.maps2d.CameraUpdateFactory
 import com.amap.api.maps2d.model.*
 import com.example.xuyangtakeout.R
@@ -18,8 +19,6 @@ import kotlinx.android.synthetic.main.activity_order_detail.*
 import org.json.JSONObject
 import java.util.*
 import kotlin.collections.ArrayList
-import com.amap.api.maps2d.model.PolylineOptions
-import com.amap.api.maps2d.AMapUtils
 
 
 /**
@@ -30,21 +29,14 @@ class OrderDetailActivity : AppCompatActivity(), Observer {
 
     override fun update(o: Observable?, data: Any?) {
 
-
         //更新UI
-
         val jsonObj: JSONObject = JSONObject(data as String)
         val pushOrderId = jsonObj.getString("orderId")
         val pushType = jsonObj.getString("type")
 
-
-
         if (orderId.equals(pushOrderId)) {
-
             type = pushType
-
         }
-
 
         val index = getIndex(type)
         (ll_order_detail_type_point_container.getChildAt(index) as ImageView).setImageResource(R.drawable.order_time_node_disabled)
