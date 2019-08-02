@@ -6,3 +6,5 @@
 主页  http://203.195.245.169:8080/TakeOutService/home
 登录 http://203.195.245.169:8080/TakeOutService/login
 订单 http://203.195.245.169:8080/TakeOutService/order
+
+## 服务端地址 https://github.com/LixyAndroid/TakeOutService
