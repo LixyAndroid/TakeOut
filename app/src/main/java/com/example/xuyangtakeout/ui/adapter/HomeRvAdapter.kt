@@ -101,6 +101,7 @@ class HomeRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.Vi
                     "Marvel's The Avengers",
                     "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557475104513&di=1e18e262814f4a2259abee5592be962a&imgtype=0&src=http%3A%2F%2F08imgmini.eastday.com%2Fmobile%2F20190319%2F20190319082614_7b2724b5d733c80f78b9c5dc71fb2a9c_2_mwpm_03201609.jpg"
                 )
+
                 url_maps.put(
                     "Big Bang Theory",
                     "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557474981869&di=bd67103f4d6b329ab64aea76dad468ff&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201312%2F23%2F20131223011936_UXnWe.jpeg"
@@ -113,14 +114,16 @@ class HomeRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.Vi
                     "Game of Thrones",
                     "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557474878055&di=43a05863851f7999a36a0ae6b27acb49&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fent%2Ftransform%2F20170801%2FaU3k-fyinvys9756735.jpg"
                 )
-                for ((key, value) in url_maps) {
+
+                //使用hashMap 循环实现轮播图
+                for((key, value) in url_maps) {
                     var textSliderView: TextSliderView = TextSliderView(context)
+
                     textSliderView.description(key).image(value)
                     sliderLayout.addSlider(textSliderView)
                 }
 
             }
-
 
         }
     }

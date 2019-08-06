@@ -13,9 +13,7 @@ import android.widget.TextView
 import com.example.xuyangtakeout.R
 import com.example.xuyangtakeout.ui.activity.LoginActivity
 import com.example.xuyangtakeout.utils.TakeoutApp
-import kotlinx.android.synthetic.main.fragment_user.*
 import org.jetbrains.anko.find
-import org.w3c.dom.Text
 
 class UserFragment : Fragment() {
     lateinit var ll_userinfo: LinearLayout
@@ -25,7 +23,7 @@ class UserFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val userview = View.inflate(activity, R.layout.fragment_user, null)
         ll_userinfo = userview.find(R.id.ll_userinfo)
-        username = userview.find<TextView>(R.id.username)
+        username = userview.find(R.id.username)
         phone = userview.find<TextView>(R.id.phone)
         ivLogin = userview.find<ImageView>(R.id.login)
 

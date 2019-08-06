@@ -63,7 +63,6 @@ class OrderFragment : Fragment() {
 
         //访问服务器，获取所有订单数据
 
-
         val userId = TakeoutApp.sUser.id
         if (-1 == userId) {
             toast("必须先登录才能查看订单，请先登录")

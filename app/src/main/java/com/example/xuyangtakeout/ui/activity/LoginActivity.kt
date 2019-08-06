@@ -56,6 +56,7 @@ class LoginActivity : AppCompatActivity() {
                         } else {
                             // TODO 处理错误的结果
                             (data as Throwable).printStackTrace()
+                            toast("验证码错误")
                         }
                     }
                     // TODO 其他接口的返回结果也类似，根据event判断当前数据属于哪个接口
