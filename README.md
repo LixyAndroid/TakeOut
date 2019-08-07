@@ -1,6 +1,6 @@
 # TakeOut
 
-## TakeOut服务器端
+## TakeOut安卓端
 
 # 外卖点餐类app, mvp+rxjava+dagger2+retrofit2+... 也集成了高德地图，极光推送，mob短信验证，服务器为腾讯云，下载可直接运行
 
