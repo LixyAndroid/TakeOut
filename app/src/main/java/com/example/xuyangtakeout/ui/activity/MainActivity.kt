@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
 
         if (BottomNavigation.checkDeviceHasNavigationBar(this)) {
-            BottomNavigation.assistActivity(findViewById(android.R.id.content));
+            BottomNavigation.assistActivity(findViewById(android.R.id.content))
         }
 
 

@@ -117,7 +117,7 @@ class LoginActivity : AppCompatActivity() {
 
             }
 
-            //       loginActivityPresenter.loginByPhone(phone)
+            //    loginActivityPresenter.loginByPhone(phone)
         }
     }
 

@@ -158,12 +158,6 @@ class BusinessActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_business)
         processIntent()
 
-//        //判断设备是否有虚拟按键，如果有增加paddingBottom = 50dp
-//        if (checkDeviceHasNavigationBar(this)) {
-//            // val x = getNavigationBarHeight(this)
-//            fl_Container.setPadding(0, 0, 0, 48.dip2px())
-//        }
-
 
         if (BottomNavigation.checkDeviceHasNavigationBar(this)) {
             BottomNavigation.assistActivity(findViewById(android.R.id.content));

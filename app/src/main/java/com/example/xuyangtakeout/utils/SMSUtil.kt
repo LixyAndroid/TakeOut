@@ -55,45 +55,5 @@ object SMSUtil {
         }
     }
 
-    /**
-     * 权限校验
-     * @param activity
-     */
-    fun checkPermission(activity: Activity) {
-        if (Build.VERSION.SDK_INT >= 23) {
-            val readPhone = activity.checkSelfPermission(Manifest.permission.READ_PHONE_STATE)
-            val receiveSms = activity.checkSelfPermission(Manifest.permission.RECEIVE_SMS)
-            val readSms = activity.checkSelfPermission(Manifest.permission.READ_SMS)
-            val readContacts = activity.checkSelfPermission(Manifest.permission.READ_CONTACTS)
-            val readSdcard = activity.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
 
-            var requestCode = 0
-            val permissions = ArrayList<String>()
-            if (readPhone != PackageManager.PERMISSION_GRANTED) {
-                requestCode = requestCode or (1 shl 0)
-                permissions.add(Manifest.permission.READ_PHONE_STATE)
-            }
-            if (receiveSms != PackageManager.PERMISSION_GRANTED) {
-                requestCode = requestCode or (1 shl 1)
-                permissions.add(Manifest.permission.RECEIVE_SMS)
-            }
-            if (readSms != PackageManager.PERMISSION_GRANTED) {
-                requestCode = requestCode or (1 shl 2)
-                permissions.add(Manifest.permission.READ_SMS)
-            }
-            if (readContacts != PackageManager.PERMISSION_GRANTED) {
-                requestCode = requestCode or (1 shl 3)
-                permissions.add(Manifest.permission.READ_CONTACTS)
-            }
-            if (readSdcard != PackageManager.PERMISSION_GRANTED) {
-                requestCode = requestCode or (1 shl 4)
-                permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE)
-            }
-            if (requestCode > 0) {
-                val permission = arrayOfNulls<String>(permissions.size)
-                activity.requestPermissions(permissions.toTypedArray(), requestCode)
-                return
-            }
-        }
-    }
 }

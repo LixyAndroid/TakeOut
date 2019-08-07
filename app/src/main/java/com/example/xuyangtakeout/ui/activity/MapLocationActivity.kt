@@ -31,7 +31,6 @@ class MapLocationActivity : CheckPermissionsActivity(), AMapLocationListener, Lo
 
     override fun onPoiItemSearched(poiItem: PoiItem?, rcode: Int) {
 
-
     }
 
     override fun onPoiSearched(poiResult: PoiResult?, rcode: Int) {
@@ -107,24 +106,6 @@ class MapLocationActivity : CheckPermissionsActivity(), AMapLocationListener, Lo
                 //停止定位，只需要一次
                 mLocationClient?.stopLocation()
 
-//                aMapLocation!!.getLocationType()//获取当前定位结果来源，如网络定位结果，详见官方定位类型表
-//                aMapLocation!!.getLatitude()//获取纬度
-//                aMapLocation!!.getLongitude()//获取经度
-//                aMapLocation!!.getAccuracy()//获取精度信息
-//                val df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-//                val date = Date(aMapLocation!!.getTime())
-//                df.format(date)//定位时间
-//                aMapLocation!!.getAddress()//地址，如果option中设置isNeedAddress为false，则没有此结果，网络定位结果中会有地址信息，GPS定位不返回地址信息。
-//                aMapLocation!!.getCountry()//国家信息
-//                aMapLocation!!.getProvince()//省信息
-//                aMapLocation!!.getCity()//城市信息
-//                aMapLocation!!.getDistrict()//城区信息
-//                aMapLocation!!.getStreet()//街道信息
-//                aMapLocation!!.getStreetNum()//街道门牌号信息
-//                aMapLocation!!.getCityCode()//城市编码
-//                aMapLocation!!.getAdCode()//地区编码
-
-
                 // 如果不设置标志位，此时再拖动地图时，它会不断将地图移动到当前的位置
 
                 if (isFirstLoc) {
@@ -141,16 +122,7 @@ class MapLocationActivity : CheckPermissionsActivity(), AMapLocationListener, Lo
                     )
                     //点击定位按钮 能够将地图的中心移动到定位点
                     mListener!!.onLocationChanged(aMapLocation)
-                    //获取定位信息
-                    /*StringBuffer buffer = new StringBuffer();
-                    buffer.append(aMapLocation.getCountry() + ""
-                            + aMapLocation.getProvince() + ""
-                            + aMapLocation.getCity() + ""
-                            + aMapLocation.getProvince() + ""
-                            + aMapLocation.getDistrict() + ""
-                            + aMapLocation.getStreet() + ""
-                            + aMapLocation.getStreetNum());
-                    Toast.makeText(getApplicationContext(), buffer.toString(), Toast.LENGTH_LONG).show();*/
+
                     isFirstLoc = false
                 }
             } else {
@@ -166,7 +138,6 @@ class MapLocationActivity : CheckPermissionsActivity(), AMapLocationListener, Lo
 
     }
 
-    //190104|010100|020000|050000|050200|050300|060000|070700|080600|100100|110000|120000|141200|150500
     private fun doSearchQuery(aMapLocation: AMapLocation) {
         val query = PoiSearch.Query(
             "", "190104|010100|020000|050000|050200|050300|060000|070700|080600|100100|110000|120000|141200|150500",

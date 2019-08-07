@@ -30,12 +30,11 @@ class HomeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = View.inflate(activity, R.layout.fragment_home, null)
-        rvHome = view.find<RecyclerView>(R.id.rv_home)
+        rvHome = view.find(R.id.rv_home)
         //布局管理器
         rvHome.layoutManager = LinearLayoutManager(activity) //从上到下的列表视图
         homeRvAdapter = HomeRvAdapter(activity)
         rvHome.adapter = homeRvAdapter
-
 
         //  homeFragmentPresenter = HomeFragmentPresenter(this)
         //TODO:解耦View层和P层，通过dagger2（基于注解的依赖注入）生成HomeFragmentPresenter
@@ -70,7 +69,6 @@ class HomeFragment : Fragment() {
 //        }
         homeFragmentPresenter.getHomeInfo()
         //    homeRvAdapter.setData(datas)
-
 
     }
 
