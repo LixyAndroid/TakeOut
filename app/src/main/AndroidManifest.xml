@@ -276,8 +276,6 @@
 
         <activity android:name=".ui.activity.MapLocationActivity"/>
 
-
-
         <activity android:name=".ui.activity.OrderDetailActivity"/>
         <activity android:name=".ui.activity.OnlinePaymentActivity"/>
         <activity android:name=".ui.activity.AlipayActivity"/>
